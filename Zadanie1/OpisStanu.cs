@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Zadanie1
 {
@@ -14,9 +10,9 @@ namespace Zadanie1
 
         public OpisStanu(Katalog katalog, bool czyWypozyczona, string pozycjaKatalogowa)
         {
-            this.Katalog = katalog;
-            this.CzyWypozyczona = czyWypozyczona;
-            this.PozycjaKatalogowa = pozycjaKatalogowa;
+            this.katalog = katalog;
+            this.czyWypozyczona = czyWypozyczona;
+            this.pozycjaKatalogowa = pozycjaKatalogowa;
         }
 
         public bool CzyWypozyczona { get => czyWypozyczona; set => czyWypozyczona = value; }
