@@ -12,7 +12,7 @@ namespace Zadanie1
         {
         }
 
-        public void Fill(DataContext context)
+        public void fill(DataContext context)
         {
             context.czytelnicy.Add(new Wykaz(97011301774, "Maciej", "Szymczak"));
             context.czytelnicy.Add(new Wykaz(98154576891, "Bartosz", "Nowak"));
@@ -22,8 +22,8 @@ namespace Zadanie1
             context.katalogi.Add(2, new Katalog(2, "W pustyni i w puszczy"));
             context.katalogi.Add(3, new Katalog(3, "Dziady"));
 
-            context.egzemplarze.Add(new OpisStanu(context.katalogi[0], false, "PT456"));
-            context.egzemplarze.Add(new OpisStanu(context.katalogi[0], false, "PT328"));
+            context.egzemplarze.Add(new OpisStanu(context.katalogi[1], false, "PT456"));
+            context.egzemplarze.Add(new OpisStanu(context.katalogi[1], false, "PT328"));
             context.egzemplarze.Add(new OpisStanu(context.katalogi[1], false, "WPIWP326"));
             context.egzemplarze.Add(new OpisStanu(context.katalogi[1], false, "WPIWP328"));
             context.egzemplarze.Add(new OpisStanu(context.katalogi[2], false, "DZ64"));

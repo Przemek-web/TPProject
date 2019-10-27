@@ -10,7 +10,16 @@ namespace Zadanie1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello");
+            DataContext dataContext = new DataContext();
+            WypelnianieStalymi dataFiller = new WypelnianieStalymi();
+            DataRepository dataRepository = new DataRepository(dataContext,dataFiller);
+            dataRepository.fillData();
+            IEnumerable<OpisStanu> czytelnicy = dataRepository.getAllOpisStanu();
+            foreach (OpisStanu czytelnik in czytelnicy) {
+                Console.Write(czytelnik);
+                Console.WriteLine();
+            }
+            Console.Read();
         }
     }
 }
