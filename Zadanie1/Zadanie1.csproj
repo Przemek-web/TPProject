@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="DataContext.cs" />
     <Compile Include="DataFiller.cs" />
+    <Compile Include="DataRepository.cs" />
     <Compile Include="Katalog.cs" />
     <Compile Include="Oddanie.cs" />
     <Compile Include="OpisStanu.cs" />
