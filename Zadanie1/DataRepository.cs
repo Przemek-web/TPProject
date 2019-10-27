@@ -60,5 +60,11 @@ namespace Zadanie1
         {
             dataContext.egzemplarze.Add(opisStanu);
         }
+
+        public void fillData()
+        {
+            dataFiller.fill(dataContext);
+        }                              
+
     }
 }

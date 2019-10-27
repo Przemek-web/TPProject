@@ -8,6 +8,6 @@ namespace Zadanie1
 {
     interface DataFiller
     {
-        void Fill(DataContext context);
+        void fill(DataContext context);
     }
 }
