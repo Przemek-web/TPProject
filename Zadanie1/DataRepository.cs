@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Zadanie1
 {
@@ -17,54 +13,95 @@ namespace Zadanie1
             this.dataFiller = dataFiller;
         }
 
-
         // metody getAll...
-        public IEnumerable<Katalog> getAllKatalog()
+        public IEnumerable<Katalog> GetAllKatalog()
         {
             return dataContext.katalogi.Values;
         }
 
-        public IEnumerable<Wykaz> getAllWykaz()
+        public IEnumerable<Wykaz> GetAllWykaz()
         {
             return dataContext.czytelnicy;
         }
 
-        public IEnumerable<Zdarzenie> getAllZdarzenie()
+        public IEnumerable<Zdarzenie> GetAllZdarzenie()
         {
             return dataContext.zdarzenie;
         }
 
-        public IEnumerable<OpisStanu> getAllOpisStanu()
+        public IEnumerable<OpisStanu> GetAllOpisStanu()
         {
             return dataContext.egzemplarze;
         }
 
         //metody add...
 
-        public void addWykaz(Wykaz element)
+        public void AddWykaz(Wykaz element)
         {
             dataContext.czytelnicy.Add(element);
         }
 
-        public void addKatalog(Katalog pozycja)
+        public void AddKatalog(Katalog pozycja)
         {
             dataContext.katalogi.Add(pozycja.Klucz, pozycja);
         }
 
-        public void addZdarzenie(Zdarzenie zdarzenie)
+        public void AddZdarzenie(Zdarzenie zdarzenie)
         {
             dataContext.zdarzenie.Add(zdarzenie);
         }
 
-        public void addOpisStanu(OpisStanu opisStanu)
+        public void AddOpisStanu(OpisStanu opisStanu)
         {
             dataContext.egzemplarze.Add(opisStanu);
         }
 
-        public void fillData()
+        public void FillData()
         {
-            dataFiller.fill(dataContext);
-        }                              
+            dataFiller.Fill(dataContext);
+        }
+
+        public Katalog GetKatalog(int klucz)
+        {
+            if (dataContext.katalogi.ContainsKey(klucz)) return dataContext.katalogi[klucz];
+            else return null;
+        }
+
+        public Katalog GetKatalog(string nazwaKsiazki)
+        {
+            foreach (Katalog katalog in dataContext.katalogi.Values) 
+            {
+                if (katalog.NazwaKsiazki.Equals(nazwaKsiazki)) return katalog;
+            }
+            return null;
+        }
+
+        public Wykaz GetWykaz(long pesel)
+        {
+            foreach (Wykaz czytelnik in dataContext.czytelnicy)
+            {
+                if (czytelnik.Pesel == pesel) return czytelnik;
+            }
+            return null;
+        }
+
+        public OpisStanu GetOpisStanu(string pozycjaKatalogowa)
+        {
+            foreach (OpisStanu egzemplarz in dataContext.egzemplarze)
+            {
+                if (egzemplarz.PozycjaKatalogowa == pozycjaKatalogowa) return egzemplarz;
+            }
+            return null;
+        }
+
+        public OpisStanu GetAvailableBook(string nazwaKsiazki)
+        {
+            foreach (OpisStanu opisStanu in dataContext.egzemplarze)
+            {
+                if (opisStanu.Katalog == this.GetKatalog(nazwaKsiazki) && opisStanu.CzyWypozyczona == false) return opisStanu;
+            }
+            return null;
+        }
 
     }
 }

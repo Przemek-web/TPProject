@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Zadanie1
 {
@@ -11,14 +7,13 @@ namespace Zadanie1
         private string nazwaKsiazki;
         private int klucz;
 
-        public Katalog(int klucz, string nazwa)
+        public Katalog(int klucz, string nazwaKsiazki)
         {
-            this.Nazwa = nazwa;
-            this.Klucz = klucz;
-
+            this.klucz = klucz;
+            this.nazwaKsiazki = nazwaKsiazki;
         }
 
-        public string Nazwa { get => nazwaKsiazki; set => nazwaKsiazki = value; }
+        public string NazwaKsiazki { get => nazwaKsiazki; set => nazwaKsiazki = value; }
         public int Klucz { get => klucz; set => klucz = value; }
 
         public override bool Equals(object obj)
