@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Zadanie1
 {
-    class Oddanie : Zdarzenie
+    public class Oddanie : Zdarzenie
     {
         private DateTime dataOddania;
         private Wykaz wykaz;
@@ -11,28 +11,37 @@ namespace Zadanie1
 
         public Oddanie(DateTime dataOddania, Wykaz wykaz, OpisStanu opisStanu)
         {
-            this.dataOddania = dataOddania;
-            this.wykaz = wykaz;
-            this.opisStanu = opisStanu;
+            this.DataOddania = dataOddania;
+            this.Wykaz = wykaz;
+            this.OpisStanu = opisStanu;
 
-            this.opisStanu.CzyWypozyczona = false;
+            this.OpisStanu.CzyWypozyczona = false;
         }
+
+        public DateTime DataOddania { get => dataOddania; set => dataOddania = value; }
+        public Wykaz Wykaz { get => wykaz; set => wykaz = value; }
+        public OpisStanu OpisStanu { get => opisStanu; set => opisStanu = value; }
 
         public override bool Equals(object obj)
         {
             return obj is Oddanie oddanie &&
-                   dataOddania == oddanie.dataOddania &&
-                   EqualityComparer<Wykaz>.Default.Equals(wykaz, oddanie.wykaz) &&
-                   EqualityComparer<OpisStanu>.Default.Equals(opisStanu, oddanie.opisStanu);
+                   DataOddania == oddanie.DataOddania &&
+                   EqualityComparer<Wykaz>.Default.Equals(Wykaz, oddanie.Wykaz) &&
+                   EqualityComparer<OpisStanu>.Default.Equals(OpisStanu, oddanie.OpisStanu);
         }
 
         public override int GetHashCode()
         {
             var hashCode = -1511708615;
-            hashCode = hashCode * -1521134295 + dataOddania.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<Wykaz>.Default.GetHashCode(wykaz);
-            hashCode = hashCode * -1521134295 + EqualityComparer<OpisStanu>.Default.GetHashCode(opisStanu);
+            hashCode = hashCode * -1521134295 + DataOddania.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<Wykaz>.Default.GetHashCode(Wykaz);
+            hashCode = hashCode * -1521134295 + EqualityComparer<OpisStanu>.Default.GetHashCode(OpisStanu);
             return hashCode;
+        }
+
+        public override string ToString()
+        {
+            return "ODDANIE:  " + "Data oddania: " + DataOddania + ", " + Wykaz + ", " + OpisStanu;
         }
     }
 }

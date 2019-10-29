@@ -2,7 +2,7 @@
 
 namespace Zadanie1
 {
-    class OpisStanu
+    public class OpisStanu
     {
         private Katalog katalog;
         private bool czyWypozyczona;
@@ -10,19 +10,19 @@ namespace Zadanie1
 
         public OpisStanu(Katalog katalog, bool czyWypozyczona, string pozycjaKatalogowa)
         {
-            this.katalog = katalog;
+            this.Katalog = katalog;
             this.czyWypozyczona = czyWypozyczona;
             this.pozycjaKatalogowa = pozycjaKatalogowa;
         }
 
         public bool CzyWypozyczona { get => czyWypozyczona; set => czyWypozyczona = value; }
         public string PozycjaKatalogowa { get => pozycjaKatalogowa; set => pozycjaKatalogowa = value; }
-        internal Katalog Katalog { get => katalog; set => katalog = value; }
+        public Katalog Katalog { get => katalog; set => katalog = value; }
 
         public override bool Equals(object obj)
         {
             return obj is OpisStanu stanu &&
-                   EqualityComparer<Katalog>.Default.Equals(katalog, stanu.katalog) &&
+                   EqualityComparer<Katalog>.Default.Equals(Katalog, stanu.Katalog) &&
                    czyWypozyczona == stanu.czyWypozyczona &&
                    pozycjaKatalogowa == stanu.pozycjaKatalogowa;
         }
@@ -30,7 +30,7 @@ namespace Zadanie1
         public override int GetHashCode()
         {
             var hashCode = 1745975141;
-            hashCode = hashCode * -1521134295 + EqualityComparer<Katalog>.Default.GetHashCode(katalog);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Katalog>.Default.GetHashCode(Katalog);
             hashCode = hashCode * -1521134295 + czyWypozyczona.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(pozycjaKatalogowa);
             return hashCode;
@@ -38,7 +38,7 @@ namespace Zadanie1
 
         public override string ToString()
         {
-            return Katalog + " " + PozycjaKatalogowa + " " + CzyWypozyczona;
+            return "EGZEMPLARZ: " + Katalog + ", " + "Pozycja Katalogowa: " + PozycjaKatalogowa + ", " + "Czy wypożyczona: " + CzyWypozyczona;
         }
     }
 }

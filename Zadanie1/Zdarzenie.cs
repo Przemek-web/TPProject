@@ -1,6 +1,6 @@
 ﻿namespace Zadanie1
 {
-    interface Zdarzenie
+    public interface Zdarzenie
     {
     }
 }

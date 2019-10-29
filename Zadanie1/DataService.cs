@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Zadanie1
 {
-    class DataService
+    public class DataService
     {
         private DataRepository dataRepository;
 
@@ -12,7 +12,7 @@ namespace Zadanie1
             this.dataRepository = dataRepository;
         }
 
-        public bool AddKatalog(int klucz, string nazwa)
+        public bool DodajKatalog(int klucz, string nazwa)
         {
             if (dataRepository.GetKatalog(klucz) == null)
             {
@@ -22,7 +22,7 @@ namespace Zadanie1
             else return false;
         }
 
-        public bool AddWykaz(long pesel, string imie, string nazwisko)
+        public bool DodajWykaz(long pesel, string imie, string nazwisko)
         {
             if (dataRepository.GetWykaz(pesel) == null)
             {
@@ -32,7 +32,7 @@ namespace Zadanie1
             else return false;
         }
 
-        public bool BuyBook(string nazwaKsiazki, string pozycjaKatalogowa)
+        public bool KupKsiazke(string nazwaKsiazki, string pozycjaKatalogowa)
         {
             if (dataRepository.GetOpisStanu(pozycjaKatalogowa) == null && dataRepository.GetKatalog(nazwaKsiazki) != null)
             {
@@ -43,7 +43,7 @@ namespace Zadanie1
             else return false;
         }
 
-        public bool RentBook(long pesel, string nazwaKsiazki)
+        public bool WypozyczKsiazke(long pesel, string nazwaKsiazki)
         {
             if (dataRepository.GetWykaz(pesel) != null && dataRepository.GetKatalog(nazwaKsiazki) != null)
             {
@@ -58,7 +58,7 @@ namespace Zadanie1
             }
             else return false;
         }
-        public bool ReturnBook(long pesel, string pozycjaKatalogowa)
+        public bool ZwrocKsiazke(long pesel, string pozycjaKatalogowa)
         {
             if (dataRepository.GetWykaz(pesel) != null && dataRepository.GetOpisStanu(pozycjaKatalogowa) != null)
             {
@@ -73,24 +73,36 @@ namespace Zadanie1
             else return false;
         }
 
-        public IEnumerable<Katalog> GetAllKatalog()
+        public IEnumerable<Katalog> WszystkiePozycjeKatalogu()
         {
             return dataRepository.GetAllKatalog();
         }
 
-        public IEnumerable<Wykaz> GetAllWykaz()
+        public IEnumerable<Wykaz> WszystkiePozycjeWykazu()
         {
             return dataRepository.GetAllWykaz();
         }
 
-        public IEnumerable<Zdarzenie> GetAllZdarzenie()
+        public IEnumerable<Zdarzenie> WszystkiePozycjeZdarzen()
         {
             return dataRepository.GetAllZdarzenie();
         }
 
-        public IEnumerable<OpisStanu> GetAllOpisStanu()
+        public IEnumerable<OpisStanu> WszystkiePozycjeOpisStanu()
         {
             return dataRepository.GetAllOpisStanu();
         }
+
+
+
+        public void Wyswietl<T>(IEnumerable<T> kolekcja)
+        {
+            foreach(object wartosc in kolekcja)
+            {
+                Console.WriteLine(wartosc);
+            }
+        }
+
+
     }
 }

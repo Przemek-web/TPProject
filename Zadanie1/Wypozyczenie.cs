@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Zadanie1
 {
-    class Wypozyczenie : Zdarzenie
+    public class Wypozyczenie : Zdarzenie
     {
         private DateTime dataWypozyczenia;
         private DateTime dataOddania;
@@ -12,31 +12,43 @@ namespace Zadanie1
 
         public Wypozyczenie(DateTime dataWypozyczenia, DateTime dataOddania, Wykaz wykaz, OpisStanu opisStanu)
         {
-            this.dataWypozyczenia = dataWypozyczenia;
-            this.dataOddania = dataOddania;
-            this.wykaz = wykaz;
-            this.opisStanu = opisStanu;
+            this.DataWypozyczenia = dataWypozyczenia;
+            this.DataOddania = dataOddania;
+            this.Wykaz = wykaz;
+            this.OpisStanu = opisStanu;
 
-            this.opisStanu.CzyWypozyczona = true;
+            this.OpisStanu.CzyWypozyczona = true;
         }
+
+        public DateTime DataWypozyczenia { get => dataWypozyczenia; set => dataWypozyczenia = value; }
+        public DateTime DataOddania { get => dataOddania; set => dataOddania = value; }
+        public Wykaz Wykaz { get => wykaz; set => wykaz = value; }
+        public OpisStanu OpisStanu { get => opisStanu; set => opisStanu = value; }
 
         public override bool Equals(object obj)
         {
             return obj is Wypozyczenie wypozyczenie &&
-                   dataWypozyczenia == wypozyczenie.dataWypozyczenia &&
-                   dataOddania == wypozyczenie.dataOddania &&
-                   EqualityComparer<Wykaz>.Default.Equals(wykaz, wypozyczenie.wykaz) &&
-                   EqualityComparer<OpisStanu>.Default.Equals(opisStanu, wypozyczenie.opisStanu);
+                   DataWypozyczenia == wypozyczenie.DataWypozyczenia &&
+                   DataOddania == wypozyczenie.DataOddania &&
+                   EqualityComparer<Wykaz>.Default.Equals(Wykaz, wypozyczenie.Wykaz) &&
+                   EqualityComparer<OpisStanu>.Default.Equals(OpisStanu, wypozyczenie.OpisStanu);
         }
 
         public override int GetHashCode()
         {
             var hashCode = 622673726;
-            hashCode = hashCode * -1521134295 + dataWypozyczenia.GetHashCode();
-            hashCode = hashCode * -1521134295 + dataOddania.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<Wykaz>.Default.GetHashCode(wykaz);
-            hashCode = hashCode * -1521134295 + EqualityComparer<OpisStanu>.Default.GetHashCode(opisStanu);
+            hashCode = hashCode * -1521134295 + DataWypozyczenia.GetHashCode();
+            hashCode = hashCode * -1521134295 + DataOddania.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<Wykaz>.Default.GetHashCode(Wykaz);
+            hashCode = hashCode * -1521134295 + EqualityComparer<OpisStanu>.Default.GetHashCode(OpisStanu);
             return hashCode;
+        }
+
+
+        public override string ToString()
+        {
+            return "WYPOŻYCZENIE:  " + " Data wypożyczenia: " + DataWypozyczenia + ", " + "Data oddania: " + DataOddania + ", " 
+                +  Wykaz + ", " + OpisStanu;
         }
     }
 }
