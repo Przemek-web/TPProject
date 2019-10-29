@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Zadanie1;
 
 namespace Zadanie1Test
 {
@@ -9,6 +10,10 @@ namespace Zadanie1Test
         [TestMethod]
         public void TestMethod1()
         {
+
+
+            DataRepository repository1 = new DataRepository();
+            
         }
     }
 }

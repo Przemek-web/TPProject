@@ -32,7 +32,7 @@ namespace Zadanie1
             else return false;
         }
 
-        public bool KupKsiazke(string nazwaKsiazki, string pozycjaKatalogowa)
+      /*  public bool KupKsiazke(string nazwaKsiazki, string pozycjaKatalogowa)
         {
             if (dataRepository.GetOpisStanu(pozycjaKatalogowa) == null && dataRepository.GetKatalog(nazwaKsiazki) != null)
             {
@@ -41,7 +41,7 @@ namespace Zadanie1
                 return true;
             }
             else return false;
-        }
+        } */
 
         public bool WypozyczKsiazke(long pesel, string nazwaKsiazki)
         {
