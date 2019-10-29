@@ -5,41 +5,39 @@ namespace Zadanie1
 {
     public class Zakup : Zdarzenie
     {
-        private string nazwa;
-        private string pozycjaKatalogowa;
+        private OpisStanu opisStanu;
         private DateTime dataZakupu;
 
-        public Zakup(string nazwa, string pozycjaKatalogowa, DateTime dataZakupu)
+        public Zakup(OpisStanu opisStanu, DateTime dataZakupu)
         {
-            this.Nazwa = nazwa;
-            this.PozycjaKatalogowa = pozycjaKatalogowa;
-            this.DataZakupu = dataZakupu;
+            this.opisStanu = opisStanu;
+            this.dataZakupu = dataZakupu;
         }
 
-        public string Nazwa { get => nazwa; set => nazwa = value; }
-        public string PozycjaKatalogowa { get => pozycjaKatalogowa; set => pozycjaKatalogowa = value; }
         public DateTime DataZakupu { get => dataZakupu; set => dataZakupu = value; }
+        public OpisStanu OpisStanu { get => opisStanu; set => opisStanu = value; }
 
         public override bool Equals(object obj)
         {
-            return obj is Zakup zakup &&
-                   nazwa == zakup.nazwa &&
-                   pozycjaKatalogowa == zakup.pozycjaKatalogowa &&
+            var zakup = obj as Zakup;
+            return zakup != null &&
+                   EqualityComparer<OpisStanu>.Default.Equals(opisStanu, zakup.opisStanu) &&
                    dataZakupu == zakup.dataZakupu;
         }
 
         public override int GetHashCode()
         {
-            var hashCode = 1262452884;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(nazwa);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(pozycjaKatalogowa);
+            var hashCode = -1349915112;
+            hashCode = hashCode * -1521134295 + EqualityComparer<OpisStanu>.Default.GetHashCode(opisStanu);
             hashCode = hashCode * -1521134295 + dataZakupu.GetHashCode();
+            hashCode = hashCode * -1521134295 + DataZakupu.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<OpisStanu>.Default.GetHashCode(OpisStanu);
             return hashCode;
         }
 
         public override string ToString()
         {
-            return "Zakup: " + "Nazwa ksiązki: " + Nazwa + ", " + "Pozycja katalogowa: " + PozycjaKatalogowa + ", " + "Data zakupu: " + DataZakupu;
+            return "ZAKUP: " + "Data zakupu: " + dataZakupu + ", " + opisStanu;
         }
     }
 }

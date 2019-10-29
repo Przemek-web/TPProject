@@ -35,9 +35,5 @@ namespace Zadanie1
         {
             return "KATALOG " + "Klucz: " + Klucz + ", " + "Nazwa książki: " + NazwaKsiazki;
         }
-
-
-
-
     }
 }

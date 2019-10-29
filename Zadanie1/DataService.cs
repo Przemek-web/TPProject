@@ -32,27 +32,27 @@ namespace Zadanie1
             else return false;
         }
 
-      /*  public bool KupKsiazke(string nazwaKsiazki, string pozycjaKatalogowa)
+        public bool KupKsiazke(string nazwaKsiazki, string pozycjaKatalogowa)
         {
             if (dataRepository.GetOpisStanu(pozycjaKatalogowa) == null && dataRepository.GetKatalog(nazwaKsiazki) != null)
             {
                 dataRepository.AddOpisStanu(new OpisStanu(dataRepository.GetKatalog(nazwaKsiazki), false, pozycjaKatalogowa));
-                dataRepository.AddZdarzenie(new Zakup());
+                dataRepository.AddZdarzenie(new Zakup(dataRepository.GetOpisStanu(pozycjaKatalogowa),DateTime.Now));
                 return true;
             }
             else return false;
-        } */
+        }
 
         public bool WypozyczKsiazke(long pesel, string nazwaKsiazki)
         {
             if (dataRepository.GetWykaz(pesel) != null && dataRepository.GetKatalog(nazwaKsiazki) != null)
             {
-                OpisStanu availableBook = dataRepository.GetAvailableBook(nazwaKsiazki);
-                if (availableBook == null) return false;
+                if (dataRepository.GetAvailableBook(nazwaKsiazki) == null) return false;
                 else
                 {
                     dataRepository.AddZdarzenie(new Wypozyczenie(DateTime.Now, DateTime.Now.AddDays(30),
-                            dataRepository.GetWykaz(pesel), availableBook));
+                            dataRepository.GetWykaz(pesel), dataRepository.GetAvailableBook(nazwaKsiazki)));
+                    dataRepository.UpdateOpisStanu(dataRepository.GetAvailableBook(nazwaKsiazki));
                     return true;
                 }
             }
@@ -67,6 +67,7 @@ namespace Zadanie1
                 {
                     dataRepository.AddZdarzenie(new Oddanie(DateTime.Now, dataRepository.GetWykaz(pesel),
                             dataRepository.GetOpisStanu(pozycjaKatalogowa)));
+                    dataRepository.UpdateOpisStanu(dataRepository.GetOpisStanu(pozycjaKatalogowa));
                     return true;
                 }
             }
@@ -93,16 +94,12 @@ namespace Zadanie1
             return dataRepository.GetAllOpisStanu();
         }
 
-
-
         public void Wyswietl<T>(IEnumerable<T> kolekcja)
         {
-            foreach(object wartosc in kolekcja)
+            foreach (object wartosc in kolekcja)
             {
                 Console.WriteLine(wartosc);
             }
         }
-
-
     }
 }

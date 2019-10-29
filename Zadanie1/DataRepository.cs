@@ -56,6 +56,11 @@ namespace Zadanie1
             dataContext.egzemplarze.Add(opisStanu);
         }
 
+        public void UpdateOpisStanu(OpisStanu opisStanu)
+        {
+            opisStanu.CzyWypozyczona = !opisStanu.CzyWypozyczona;
+        }
+
         public void FillData()
         {
             dataFiller.Fill(dataContext);
