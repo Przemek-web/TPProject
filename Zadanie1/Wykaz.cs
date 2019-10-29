@@ -2,7 +2,7 @@
 
 namespace Zadanie1
 {
-    class Wykaz
+    public class Wykaz
     {
         private long pesel;
         private string imie;
@@ -38,7 +38,7 @@ namespace Zadanie1
 
         public override string ToString()
         {
-            return imie + " " + nazwisko + " " + pesel;
+            return "WYKAZ " + "Imię: " + Imie + ", " + "Nazwisko: " + Nazwisko + ", " + "PESEL: " + Pesel;
         }
 
 

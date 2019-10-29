@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace Zadanie1
 {
-    class DataContext
+    public class DataContext
     {
         public List<Wykaz> czytelnicy = new List<Wykaz>();
         public Dictionary<int, Katalog> katalogi = new Dictionary<int, Katalog>();

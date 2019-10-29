@@ -2,7 +2,7 @@
 
 namespace Zadanie1
 {
-    class WypelnianieStalymi : DataFiller
+    public class WypelnianieStalymi : DataFiller
     {
         public WypelnianieStalymi()
         {

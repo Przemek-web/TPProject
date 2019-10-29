@@ -1,6 +1,6 @@
 ﻿namespace Zadanie1
 {
-    class Zakup : Zdarzenie
+    public class Zakup : Zdarzenie
     {
     }
 }

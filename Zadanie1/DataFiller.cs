@@ -1,6 +1,6 @@
 ﻿namespace Zadanie1
 {
-    interface DataFiller
+    public interface DataFiller
     {
         void Fill(DataContext context);
     }

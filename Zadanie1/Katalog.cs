@@ -2,7 +2,7 @@
 
 namespace Zadanie1
 {
-    class Katalog
+    public class Katalog
     {
         private string nazwaKsiazki;
         private int klucz;
@@ -33,7 +33,7 @@ namespace Zadanie1
 
         public override string ToString()
         {
-            return klucz + " " + nazwaKsiazki;
+            return "KATALOG " + "Klucz: " + Klucz + ", " + "Nazwa książki: " + NazwaKsiazki;
         }
 
 
