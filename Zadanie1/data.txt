@@ -1,0 +1,15 @@
+20154511891,Andrzej,Matusiak
+95011301872,Olek,Dukaj
+82315543542,Jarek,Mlecz
+1,Encyklopedia
+2,Gotuj z Danielem
+3,Sikalafom
+1,false,E14
+1,false,E86
+1,false,E2
+2,true,GZD3
+3,false,S15
+3,true,S4
+2019-11-26,2019-12-26,0,2
+2019-11-28,2019-12-28,1,4
+2019-11-26,2019-12-26,2,3
