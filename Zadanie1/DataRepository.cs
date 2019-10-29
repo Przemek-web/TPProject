@@ -106,7 +106,7 @@ namespace Zadanie1
         {
             foreach (OpisStanu opisStanu in dataContext.egzemplarze)
             {
-                if (opisStanu.Katalog == GetKatalog(nazwaKsiazki) && opisStanu.CzyWypozyczona == false) return opisStanu;
+                if (opisStanu.Katalog == this.GetKatalog(nazwaKsiazki) && opisStanu.CzyWypozyczona == false) return opisStanu;
             }
             return null;
         }

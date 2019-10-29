@@ -37,7 +37,7 @@ namespace Zadanie1
             if (dataRepository.GetOpisStanu(pozycjaKatalogowa) == null && dataRepository.GetKatalog(nazwaKsiazki) != null)
             {
                 dataRepository.AddOpisStanu(new OpisStanu(dataRepository.GetKatalog(nazwaKsiazki), false, pozycjaKatalogowa));
-                dataRepository.AddZdarzenie(new Zakup(dataRepository.GetOpisStanu(pozycjaKatalogowa), DateTime.Now));
+                dataRepository.AddZdarzenie(new Zakup(dataRepository.GetOpisStanu(pozycjaKatalogowa),DateTime.Now));
                 return true;
             }
             else return false;
