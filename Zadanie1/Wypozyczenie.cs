@@ -16,8 +16,6 @@ namespace Zadanie1
             this.DataOddania = dataOddania;
             this.Wykaz = wykaz;
             this.OpisStanu = opisStanu;
-
-            this.OpisStanu.CzyWypozyczona = true;
         }
 
         public DateTime DataWypozyczenia { get => dataWypozyczenia; set => dataWypozyczenia = value; }

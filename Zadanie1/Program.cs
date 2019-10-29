@@ -10,15 +10,15 @@ namespace Zadanie1
             DataContext dataContext = new DataContext();
             WypelnianieStalymi dataFiller = new WypelnianieStalymi();
             DataRepository dataRepository = new DataRepository(dataContext, dataFiller);
-            dataRepository.FillData();
+            //dataRepository.FillData();
             DataService dS = new DataService(dataRepository);
-            //dS.AddWykaz(123, "Jarek", "Smorawa");
-            //dS.AddWykaz(12, "Andrzej", "Smorawa");
-            //dS.AddKatalog(1, "Lord Of The Rings");
-            //dS.BuyBook("Lord Of The Rings", "LOTR1");
-            //Console.Write(dS.RentBook(123, "Lord Of The Rings"));
+            dS.DodajWykaz(123, "Jarek", "Smorawa");
+            dS.DodajWykaz(12, "Andrzej", "Smorawa");
+            dS.DodajKatalog(1, "Lord Of The Rings");
+            dS.KupKsiazke("Lord Of The Rings", "LOTR1");     
+            Console.Write(dS.WypozyczKsiazke(12, "Lord Of The Rings"));
             //Console.Write(dS.ReturnBook(12, "LOTR1"));
-            //Console.Read();
+            Console.Read();
             // Console.WriteLine(dS.DodajWykaz(123, "Jarek", "Smorawa"));
             // Console.WriteLine(dS.DodajWykaz(12, "Andrzej", "Smorawa"));
             // Console.WriteLine(dS.DodajKatalog(1, "Lord Of The Rings"));
@@ -53,7 +53,7 @@ namespace Zadanie1
                 Console.WriteLine(z);
             } **/
 
-            dS.Wyswietl(dS.WszystkiePozycjeKatalogu());
+            //dS.Wyswietl(dS.WszystkiePozycjeKatalogu());
 
         }
     }
