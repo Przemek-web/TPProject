@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 
 namespace Zadanie1
 {
@@ -11,6 +13,7 @@ namespace Zadanie1
         {
             this.dataContext = dataContext;
             this.dataFiller = dataFiller;
+            dataContext.zdarzenia.CollectionChanged += ZdarzeniaChange;
         }
 
         // metody getAll...
@@ -26,7 +29,7 @@ namespace Zadanie1
 
         public IEnumerable<Zdarzenie> GetAllZdarzenie()
         {
-            return dataContext.zdarzenie;
+            return dataContext.zdarzenia;
         }
 
         public IEnumerable<OpisStanu> GetAllOpisStanu()
@@ -48,7 +51,7 @@ namespace Zadanie1
 
         public void AddZdarzenie(Zdarzenie zdarzenie)
         {
-            dataContext.zdarzenie.Add(zdarzenie);
+            dataContext.zdarzenia.Add(zdarzenie);
         }
 
         public void AddOpisStanu(OpisStanu opisStanu)
@@ -74,7 +77,7 @@ namespace Zadanie1
 
         public Katalog GetKatalog(string nazwaKsiazki)
         {
-            foreach (Katalog katalog in dataContext.katalogi.Values) 
+            foreach (Katalog katalog in dataContext.katalogi.Values)
             {
                 if (katalog.NazwaKsiazki.Equals(nazwaKsiazki)) return katalog;
             }
@@ -103,10 +106,21 @@ namespace Zadanie1
         {
             foreach (OpisStanu opisStanu in dataContext.egzemplarze)
             {
-                if (opisStanu.Katalog == this.GetKatalog(nazwaKsiazki) && opisStanu.CzyWypozyczona == false) return opisStanu;
+                if (opisStanu.Katalog == GetKatalog(nazwaKsiazki) && opisStanu.CzyWypozyczona == false) return opisStanu;
             }
             return null;
         }
 
+        public void ZdarzeniaChange(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                Console.WriteLine("Dodano nowe zdarzenie: ");
+                foreach (Zdarzenie z in e.NewItems)
+                {
+                    Console.WriteLine(z);
+                }
+            }
+        }
     }
 }

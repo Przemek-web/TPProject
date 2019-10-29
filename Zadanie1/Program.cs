@@ -8,25 +8,44 @@ namespace Zadanie1
         static void Main(string[] args)
         {
             DataContext dataContext = new DataContext();
-            WypelnianieStalymi dataFiller = new WypelnianieStalymi();
+            //WypelnianieStalymi dataFiller = new WypelnianieStalymi();
+            WypelnianieZPliku dataFiller = new WypelnianieZPliku();
+
             DataRepository dataRepository = new DataRepository(dataContext, dataFiller);
-            //dataRepository.FillData();
-            DataService dS = new DataService(dataRepository);
-            dS.DodajWykaz(123, "Jarek", "Smorawa");
-            dS.DodajWykaz(12, "Andrzej", "Smorawa");
-            dS.DodajKatalog(1, "Lord Of The Rings");
-            dS.KupKsiazke("Lord Of The Rings", "LOTR1");     
-            Console.Write(dS.WypozyczKsiazke(12, "Lord Of The Rings"));
-            //Console.Write(dS.ReturnBook(12, "LOTR1"));
+            dataRepository.FillData();
+            foreach(Wykaz w in dataRepository.GetAllWykaz())
+            {
+                Console.Write(w);
+                Console.WriteLine();
+            }
+            foreach (Katalog k in dataRepository.GetAllKatalog())
+            {
+                Console.Write(k);
+                Console.WriteLine();
+            }
+            foreach (OpisStanu o in dataRepository.GetAllOpisStanu())
+            {
+                Console.Write(o);
+                Console.WriteLine();
+            }
             Console.Read();
+            //DataService dS = new DataService(dataRepository);
+            //dS.DodajWykaz(123, "Jarek", "Smorawa");
+            //dS.DodajWykaz(12, "Andrzej", "Smorawa");
+            //dS.DodajKatalog(1, "Lord Of The Rings");
+            //dS.KupKsiazke("Lord Of The Rings", "LOTR1");     
+            //Console.Write(dS.WypozyczKsiazke(12, "Lord Of The Rings"));
+            ////Console.Write(dS.ReturnBook(12, "LOTR1"));
+            //Console.Read();
             // Console.WriteLine(dS.DodajWykaz(123, "Jarek", "Smorawa"));
             // Console.WriteLine(dS.DodajWykaz(12, "Andrzej", "Smorawa"));
             // Console.WriteLine(dS.DodajKatalog(1, "Lord Of The Rings"));
             // Console.WriteLine(dS.KupKsiazke("Lord Of The Rings", "LOTR1"));
 
+
+
+
             //Console.WriteLine(dS.)
-
-
 
             /**IEnumerable<Wykaz> wykazy = dS.WszystkiePozycjeWykazu();
             foreach(Wykaz w in wykazy)
