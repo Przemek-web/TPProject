@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zadanie1;
 
-namespace Zadanie1Test
+namespace Zadanie1.Tests
 {
-    [TestClass]
+    [TestClass()]
     public class TestMetodWDataRepository
     {
-        [TestMethod]
+        [TestMethod()]
         public void TestMethodAddKatalog()
         {
             DataContext data = new DataContext();
@@ -26,7 +26,7 @@ namespace Zadanie1Test
             Assert.AreEqual(3, data.katalogi.Count);
         }
 
-        [TestMethod]
+        [TestMethod()]
         public void TestMethodAddWykaz()
         {
             DataContext data = new DataContext();
@@ -46,7 +46,7 @@ namespace Zadanie1Test
             Assert.AreEqual(3, data.czytelnicy.Count);
         }
 
-        [TestMethod]
+        [TestMethod()]
         public void TestMethodAddOpisStanu()
         {
             DataContext data = new DataContext();
@@ -69,7 +69,7 @@ namespace Zadanie1Test
             Assert.AreEqual(3, data.egzemplarze.Count);
         }
 
-        [TestMethod]
+        [TestMethod()]
         public void TestMethodAddZdarzenie()
         {
             DataContext data = new DataContext();
@@ -104,7 +104,7 @@ namespace Zadanie1Test
             Assert.AreEqual(4, data.zdarzenia.Count);
         }
 
-        [TestMethod]
+        [TestMethod()]
         public void TestMethodUpdate()
         {
             DataContext data = new DataContext();
@@ -120,7 +120,7 @@ namespace Zadanie1Test
             Assert.AreNotEqual(false, o1.CzyWypozyczona);
         }
 
-        [TestMethod]
+        [TestMethod()]
         public void TestMethodGetKatalog()
         {
             DataContext data = new DataContext();
@@ -134,7 +134,7 @@ namespace Zadanie1Test
             Assert.AreEqual(k1, dataRepository.GetKatalog(1));
         }
 
-        [TestMethod]
+        [TestMethod()]
         public void TestMethodGetWykaz()
         {
             DataContext data = new DataContext();
@@ -147,7 +147,7 @@ namespace Zadanie1Test
             Assert.AreEqual(w1, dataRepository.GetWykaz(123));
         }
 
-        [TestMethod]
+        [TestMethod()]
         public void TestMethodGetOpisStanu()
         {
             DataContext data = new DataContext();
@@ -162,7 +162,7 @@ namespace Zadanie1Test
             Assert.AreEqual(o1, dataRepository.GetOpisStanu("LOTR1"));
         }
 
-        [TestMethod]
+        [TestMethod()]
         public void TestMethodGetAvailableBook()
         {
             DataContext data = new DataContext();
