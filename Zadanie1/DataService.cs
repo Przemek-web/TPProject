@@ -107,5 +107,10 @@ namespace Zadanie1
         {
             return dataRepository.ReturnEventsBetweenDates(start, koniec);
         }
+
+        public IEnumerable<Zdarzenie> ZdarzeniaDlaElementuWykazu(long pesel)
+        {
+            return dataRepository.EventsForClient(dataRepository.GetWykaz(pesel));
+        }
     }
 }

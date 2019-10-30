@@ -42,6 +42,11 @@ namespace Zadanie1
             return DataZakupu;
         }
 
+        public Wykaz GetWykaz()
+        {
+            return null;
+        }
+
         public override string ToString()
         {
             return "ZAKUP: " + "Data zakupu: " + dataZakupu + ", " + opisStanu;

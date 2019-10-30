@@ -43,6 +43,11 @@ namespace Zadanie1
             return DataOddania;
         }
 
+        public Wykaz GetWykaz()
+        {
+            return Wykaz;
+        }
+
         public override string ToString()
         {
             return "ODDANIE:  " + "Data oddania: " + DataOddania + ", " + Wykaz + ", " + OpisStanu;

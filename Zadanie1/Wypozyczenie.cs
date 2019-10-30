@@ -50,6 +50,11 @@ namespace Zadanie1
             return DataWypozyczenia;
         }
 
+        public Wykaz GetWykaz()
+        {
+            return Wykaz;
+        }
+
         public override string ToString()
         {
             return "WYPOŻYCZENIE:  " + " Data wypożyczenia: " + DataWypozyczenia + ", " + "Data oddania: " + DataOddania + ", " 

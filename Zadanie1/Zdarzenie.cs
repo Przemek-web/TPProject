@@ -6,5 +6,6 @@ namespace Zadanie1
     {
         
         DateTime GetStartDate();
+        Wykaz GetWykaz();
     }
 }
