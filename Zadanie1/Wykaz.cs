@@ -40,8 +40,5 @@ namespace Zadanie1
         {
             return "WYKAZ " + "Imię: " + Imie + ", " + "Nazwisko: " + Nazwisko + ", " + "PESEL: " + Pesel;
         }
-
-
-
     }
 }

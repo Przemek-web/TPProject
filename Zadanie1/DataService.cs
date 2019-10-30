@@ -101,5 +101,11 @@ namespace Zadanie1
                 Console.WriteLine(wartosc);
             }
         }
+
+
+       public IEnumerable<Zdarzenie> ZdarzeniaPomiedzyDatami(DateTime start, DateTime koniec)
+        {
+            return dataRepository.ReturnEventsBetweenDates(start, koniec);
+        }
     }
 }

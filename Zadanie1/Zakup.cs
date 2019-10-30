@@ -25,6 +25,8 @@ namespace Zadanie1
                    dataZakupu == zakup.dataZakupu;
         }
 
+      
+
         public override int GetHashCode()
         {
             var hashCode = -1349915112;
@@ -33,6 +35,11 @@ namespace Zadanie1
             hashCode = hashCode * -1521134295 + DataZakupu.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<OpisStanu>.Default.GetHashCode(OpisStanu);
             return hashCode;
+        }
+
+        public DateTime GetStartDate()
+        {
+            return DataZakupu;
         }
 
         public override string ToString()

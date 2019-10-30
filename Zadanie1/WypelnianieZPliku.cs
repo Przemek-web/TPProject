@@ -23,8 +23,10 @@ namespace Zadanie1
             }
             for (int i = 12; i < 15; i++)
             {
+                context.egzemplarze[Convert.ToInt32(data[i][3])].CzyWypozyczona = true;
+
                 context.zdarzenia.Add(new Wypozyczenie(DateTime.Parse(data[i][0]), DateTime.Parse(data[i][1]),
-                    context.czytelnicy[Convert.ToInt32(data[i][2])], context.egzemplarze[Convert.ToInt32(data[i][3])]));
+                    context.czytelnicy[Convert.ToInt32(data[i][2])], context.egzemplarze[Convert.ToInt32(data[i][3])]));         
             }
         }
 
@@ -34,7 +36,7 @@ namespace Zadanie1
             List<string[]> data = new List<string[]>();
 
             System.IO.StreamReader file =
-                new System.IO.StreamReader("data.txt");
+                new System.IO.StreamReader("../../data.txt");
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split(',');

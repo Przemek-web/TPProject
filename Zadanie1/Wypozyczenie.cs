@@ -18,6 +18,7 @@ namespace Zadanie1
             this.OpisStanu = opisStanu;
         }
 
+
         public DateTime DataWypozyczenia { get => dataWypozyczenia; set => dataWypozyczenia = value; }
         public DateTime DataOddania { get => dataOddania; set => dataOddania = value; }
         public Wykaz Wykaz { get => wykaz; set => wykaz = value; }
@@ -32,6 +33,8 @@ namespace Zadanie1
                    EqualityComparer<OpisStanu>.Default.Equals(OpisStanu, wypozyczenie.OpisStanu);
         }
 
+       
+
         public override int GetHashCode()
         {
             var hashCode = 622673726;
@@ -42,6 +45,10 @@ namespace Zadanie1
             return hashCode;
         }
 
+        public DateTime GetStartDate()
+        {
+            return DataWypozyczenia;
+        }
 
         public override string ToString()
         {

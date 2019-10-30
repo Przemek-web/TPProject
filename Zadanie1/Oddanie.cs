@@ -28,6 +28,7 @@ namespace Zadanie1
                    EqualityComparer<OpisStanu>.Default.Equals(OpisStanu, oddanie.OpisStanu);
         }
 
+
         public override int GetHashCode()
         {
             var hashCode = -1511708615;
@@ -35,6 +36,11 @@ namespace Zadanie1
             hashCode = hashCode * -1521134295 + EqualityComparer<Wykaz>.Default.GetHashCode(Wykaz);
             hashCode = hashCode * -1521134295 + EqualityComparer<OpisStanu>.Default.GetHashCode(OpisStanu);
             return hashCode;
+        }
+
+        public DateTime GetStartDate()
+        {
+            return DataOddania;
         }
 
         public override string ToString()

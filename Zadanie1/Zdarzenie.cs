@@ -1,6 +1,10 @@
-﻿namespace Zadanie1
+﻿using System;
+
+namespace Zadanie1
 {
     public interface Zdarzenie
     {
+        
+        DateTime GetStartDate();
     }
 }

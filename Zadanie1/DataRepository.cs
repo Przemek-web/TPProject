@@ -122,5 +122,21 @@ namespace Zadanie1
                 }
             }
         }
+
+
+       public  IEnumerable<Zdarzenie> ReturnEventsBetweenDates(DateTime start, DateTime finish)
+        {
+            List<Zdarzenie> dates = new List<Zdarzenie>();
+            foreach (Zdarzenie z in dataContext.zdarzenia)
+            {
+                if (z.GetStartDate() >= start && z.GetStartDate() <= finish)
+                {
+                    dates.Add(z);
+                }
+            }
+            return dates;
+        }
     }
+
+   
 }

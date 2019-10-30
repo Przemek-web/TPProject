@@ -111,7 +111,7 @@ namespace Zadanie1
                "1 - Dodaj Katalog \n" + "2 - Dodaj Wykaz \n" + "3 - Kup książkę \n" +
                "4 - Zwróć książkę \n" + "5 - Wypożycz książkę \n" + "6 - Wyswietl czytelników \n" +
                "7 - Wyswietl katalogi \n" + "8 - Wyswietl egzemplarze \n" + "9 - Wyswietl wszystkie zdarzenia \n" +
-               "10 - Zakoncz");
+               "10 - Wyswietl zdarzenia pomiędzy datami \n" + "11 - Zakończ");
 
 
                 check = Convert.ToInt32(Console.ReadLine());
@@ -205,12 +205,16 @@ namespace Zadanie1
                         service.Wyswietl(service.WszystkiePozycjeZdarzen());
                         break;
                     case 10:
-                        Console.WriteLine("Koniec");
+                        Console.WriteLine("Podaj date początkową w formacie rr-mm-dd");
+                        DateTime dataPoczatkowa = DateTime.Parse(Console.ReadLine());
+                        Console.WriteLine("Podaj date koncową w formacie rr-mm-dd");
+                        DateTime dataKoncowa = DateTime.Parse(Console.ReadLine());
+                        service.Wyswietl(service.ZdarzeniaPomiedzyDatami(dataPoczatkowa, dataKoncowa));
                         break;
                    
 
                 }
-            } while (check != 10);
+            } while (check != 11);
 
 
         }
