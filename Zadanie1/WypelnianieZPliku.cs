@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Zadanie1
 {
-    class WypelnianieZPliku : DataFiller
+    public class WypelnianieZPliku : DataFiller
     {
         public WypelnianieZPliku() { }
 
