@@ -17,7 +17,6 @@ namespace Zadanie2
             string json = JsonConvert.SerializeObject(wykaz, Newtonsoft.Json.Formatting.Indented,
             new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
             File.WriteAllText(@path, json);
-            Console.WriteLine("Wykaz OK");
         }
 
         private void SerializeJSONKatalog(IEnumerable<Katalog> katalog, string path)
@@ -25,7 +24,6 @@ namespace Zadanie2
             string json = JsonConvert.SerializeObject(katalog, Newtonsoft.Json.Formatting.Indented,
             new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
             File.WriteAllText(@path, json);
-            Console.WriteLine("Katalog OK");
         }
 
 
@@ -34,7 +32,6 @@ namespace Zadanie2
             string json = JsonConvert.SerializeObject(opisStanu, Newtonsoft.Json.Formatting.Indented,
             new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
             File.WriteAllText(@path, json);
-            Console.WriteLine("OpisStanu OK");  
         }
 
 
@@ -56,8 +53,6 @@ namespace Zadanie2
             SerializeJSONKatalog(data.GetAllKatalog(), "Katalog.json");
             SerializeJSONOpisStanu(data.GetAllOpisStanu(), "OpisStanu.json");
             SerializeJSONZdarzenie(data.GetAllZdarzenie(), "Zdarzenie.json");
-
-            Console.WriteLine("All OK");
         }
     }
 }
