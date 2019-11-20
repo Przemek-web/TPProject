@@ -10,7 +10,7 @@ using Zadanie1;
 
 namespace Zadanie2
 {
-    class DeserializationJSON
+    public class DeserializationJSON
     {
 
        

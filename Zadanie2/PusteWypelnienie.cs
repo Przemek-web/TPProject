@@ -7,7 +7,7 @@ using Zadanie1;
 
 namespace Zadanie2
 {
-    class PusteWypelnienie: DataFiller
+    public class PusteWypelnienie: DataFiller
     {
         public PusteWypelnienie() { }
 

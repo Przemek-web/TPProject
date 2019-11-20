@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Zadanie2
 {
-    class SerializationJSON
+    public class SerializationJSON
     {
 
         private void SerializeJSONWykaz(IEnumerable<Wykaz> wykaz, string path)
