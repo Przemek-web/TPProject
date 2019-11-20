@@ -10,10 +10,10 @@ using System.IO;
 
 namespace Zadanie2
 {
-    class Serialization
+    class SerializationJSON
     {
 
-        public void SerializeJSONWykaz(IEnumerable<Wykaz> wykaz, string path)
+        private void SerializeJSONWykaz(IEnumerable<Wykaz> wykaz, string path)
         {
             string json = JsonConvert.SerializeObject(wykaz, Newtonsoft.Json.Formatting.Indented,
             new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
@@ -22,7 +22,7 @@ namespace Zadanie2
 
         }
 
-        public void SerializeJSONKatalog(IEnumerable<Katalog> katalog, string path)
+        private void SerializeJSONKatalog(IEnumerable<Katalog> katalog, string path)
         {
             string json = JsonConvert.SerializeObject(katalog, Newtonsoft.Json.Formatting.Indented,
             new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
@@ -32,7 +32,7 @@ namespace Zadanie2
         }
 
 
-        public void SerializeJSONOpisStanu(IEnumerable<OpisStanu> opisStanu, string path)
+        private void SerializeJSONOpisStanu(IEnumerable<OpisStanu> opisStanu, string path)
         {
             string json = JsonConvert.SerializeObject(opisStanu, Newtonsoft.Json.Formatting.Indented,
             new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
@@ -42,12 +42,22 @@ namespace Zadanie2
         }
 
 
-        public void SerializeJSONZdarzenie(IEnumerable<Zdarzenie> zdarzenie, string path)
+        private void SerializeJSONZdarzenie(IEnumerable<Zdarzenie> zdarzenie, string path)
         {
-            string json = JsonConvert.SerializeObject(zdarzenie, Newtonsoft.Json.Formatting.Indented,
-            new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
-            File.WriteAllText(@path, json);
-            Console.WriteLine("Zdarzenie OK");
+            //  string json = JsonConvert.SerializeObject(zdarzenie, Newtonsoft.Json.Formatting.Indented,
+            // new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
+            // File.WriteAllText(@path, json);
+            // Console.WriteLine("Zdarzenie OK");
+
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            };
+
+            string strJson = JsonConvert.SerializeObject(zdarzenie, settings);
+            File.WriteAllText(@path, strJson);
+
+
 
         }
 
