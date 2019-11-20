@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Zadanie1
 {
-    public class Wypozyczenie : Zdarzenie
+    public class Wypozyczenie : Zdarzenie, ISerializable
     {
         private DateTime dataWypozyczenia;
         private DateTime dataOddania;
         private Wykaz wykaz;
         private OpisStanu opisStanu;
 
+        [JsonConstructor]
         public Wypozyczenie(DateTime dataWypozyczenia, DateTime dataOddania, Wykaz wykaz, OpisStanu opisStanu)
         {
             this.DataWypozyczenia = dataWypozyczenia;
@@ -60,5 +63,32 @@ namespace Zadanie1
             return "WYPOŻYCZENIE:  " + " Data wypożyczenia: " + DataWypozyczenia + ", " + "Data oddania: " + DataOddania + ", " 
                 +  Wykaz + ", " + OpisStanu;
         }
+
+        public Wypozyczenie(SerializationInfo info, StreamingContext streamingContext)
+        {
+            this.dataWypozyczenia = DateTime.Parse(info.GetString("dataWypozyczenia"));
+            this.dataOddania = DateTime.Parse(info.GetString("dataOddania"));
+
+            this.wykaz = new Wykaz(long.Parse(info.GetString("peselCzytelnika")), info.GetString("imieCzytelnika"), info.GetString("nazwiskoCzytelnika"));
+
+            this.opisStanu = new OpisStanu(new Katalog(int.Parse(info.GetString("kluczKsiazki")), info.GetString("nazwaKsiazki")),
+                Boolean.Parse(info.GetString("czyWypozyczona")), info.GetString("pozycjaKatalogowa"));
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("dataWypozyczenia", this.dataWypozyczenia);
+            info.AddValue("dataOddania", this.dataOddania);
+
+            info.AddValue("peselCzytelnika", this.wykaz.Pesel);
+            info.AddValue("imieCzytelnika", this.wykaz.Imie);
+            info.AddValue("nazwiskoCzytelnika", this.wykaz.Nazwisko);
+
+            info.AddValue("kluczKsiazki", this.opisStanu.Katalog.Klucz);
+            info.AddValue("nazwaKsiazki", this.opisStanu.Katalog.NazwaKsiazki);
+            info.AddValue("czyWypozyczona", this.opisStanu.CzyWypozyczona);
+            info.AddValue("pozycjaKatalogowa", this.opisStanu.PozycjaKatalogowa);
+        }
+
     }
 }

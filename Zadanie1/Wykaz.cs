@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Zadanie1
 {
-    public class Wykaz
+    public class Wykaz : ISerializable
     {
         private long pesel;
         private string imie;
         private string nazwisko;
 
+        [JsonConstructor]
         public Wykaz(long pesel, string imie, string nazwisko)
         {
             this.pesel = pesel;
@@ -35,10 +38,25 @@ namespace Zadanie1
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(nazwisko);
             return hashCode;
         }
-
+   
         public override string ToString()
         {
             return "WYKAZ " + "Imię: " + Imie + ", " + "Nazwisko: " + Nazwisko + ", " + "PESEL: " + Pesel;
+        }
+
+       
+        public Wykaz(SerializationInfo info, StreamingContext streamingContext)
+        {
+            this.pesel = long.Parse(info.GetString("peselCzytelnika"));
+            this.imie = info.GetString("imieCzytelnika");
+            this.nazwisko = info.GetString("nazwiskoCzytelnika");
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("peselCzytelnika", this.pesel);
+            info.AddValue("imieCzytelnika", this.imie);
+            info.AddValue("nazwiskoCzytelnika", this.nazwisko);
         }
     }
 }

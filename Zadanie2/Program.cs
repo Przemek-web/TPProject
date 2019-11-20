@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,8 @@ namespace Zadanie2
             do
             {
                 Console.WriteLine("Podaj sposób wstępnego wypełniania repozytorium danymi:\n" +
-                 "1 - Serializacja JSON \n" + "2 - Deserializacja JSON \n" + "3- Wyjście\n");
+                 "1 - Serializacja JSON \n" + "2 - Deserializacja JSON \n" + "3 - Serializacja CSV \n" +
+                 "4 - Wyjscie\n");
 
 
                 choice = Convert.ToInt32(Console.ReadLine());
@@ -58,6 +60,15 @@ namespace Zadanie2
                         service2.Wyswietl(service2.WszystkiePozycjeZdarzen());
                         break;
                     case 3:
+                        DataContext data3 = new DataContext();
+                        WypelnianieStalymi stale3 = new WypelnianieStalymi();
+                        DataRepository repository3 = new DataRepository(data3, stale3);
+                        repository3.FillData();
+                        DataService service3 = new DataService(repository3);
+                        CustomSerialization customSerialization = new CustomSerialization();
+                        customSerialization.SerializeCSV(repository3);
+                        break;
+                    case 4:
                         Console.WriteLine("Koniec programu");
                         break;
                     default:
@@ -65,35 +76,7 @@ namespace Zadanie2
                         break;
 
                 }
-            } while(choice!=3);
-
-
-
-            
-           
-            
-
-
-
-           
-            //serialization.SerializeJSON(repository1);
-            //service1.Wyswietl(service1.WszystkiePozycjeWykazu());
-            //service1.Wyswietl(service1.WszystkiePozycjeKatalogu());
-            //service1.Wyswietl(service1.WszystkiePozycjeOpisStanu());
-            //service1.Wyswietl(service1.WszystkiePozycjeZdarzen());
-
-
-            //SerializationJSON serialization2 = new SerializationJSON();
-            
-            //service1.Wyswietl(service2.WszystkiePozycjeWykazu());
-
-            
-
-
-            
-
-
-
+            } while (choice != 3);
         }
     }
 }

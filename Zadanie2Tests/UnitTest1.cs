@@ -35,7 +35,7 @@ namespace Zadanie2Tests
 
             DeserializationJSON deserialization = new DeserializationJSON();
             deserialization.DeserializeJSON(data2);
-    
+
             Assert.AreEqual(2, data2.czytelnicy.Count);
             Assert.AreEqual(3, data2.katalogi.Count);
             Assert.AreEqual(5, data2.egzemplarze.Count);
