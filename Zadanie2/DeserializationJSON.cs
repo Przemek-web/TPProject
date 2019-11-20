@@ -11,21 +11,15 @@ using Zadanie1;
 namespace Zadanie2
 {
     public class DeserializationJSON
-    {
-
-       
-
+    {  
         private void DeserializeJSONWykaz(DataContext datacontext, string path)
         {
             string json = File.ReadAllText(@path);
-            //dataContext.czytelnicy = JsonConvert.DeserializeObject<IEnumerable<Wykaz>>(json, new JsonSerializerSettings
-            //{ PreserveReferencesHandling = PreserveReferencesHandling.Objects });
 
             datacontext.czytelnicy = JsonConvert.DeserializeObject<List<Wykaz>>(json, new JsonSerializerSettings 
             { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
 
         }
-
 
         private void DeserializeJSONKatalog(DataContext datacontext, string path)
         {
@@ -49,13 +43,9 @@ namespace Zadanie2
 
         }
 
-
-
         private void DeserializeJSONZdarzenie(DataContext datacontext, string path)
         {
             string json = File.ReadAllText(@path);
-            //IEnumerable<Zdarzenie> import = JsonConvert.DeserializeObject<IEnumerable<Zdarzenie>>(json, new JsonSerializerSettings
-            // { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
 
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
@@ -72,9 +62,6 @@ namespace Zadanie2
             DeserializeJSONKatalog(datacontext,"Katalog.json");
             DeserializeJSONOpisStanu(datacontext,"OpisStanu.json");
             DeserializeJSONZdarzenie(datacontext,"Zdarzenie.json");
-
-     
-
         }
     }
 }

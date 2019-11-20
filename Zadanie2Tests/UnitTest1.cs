@@ -23,30 +23,19 @@ namespace Zadanie2Tests
             DataRepository repository2 = new DataRepository(data2, pusteWypelnienie);
             repository2.FillData();
             DataService service2 = new DataService(repository2);
-            
-            
+                      
             SerializationJSON serialization = new SerializationJSON();
-           
-
-            
+                     
             serialization.SerializeJSON(repository1);
-            
-
-           
-
-
-
+                   
             Assert.AreEqual(0, data2.czytelnicy.Count);
             Assert.AreEqual(0, data2.katalogi.Count);
             Assert.AreEqual(0, data2.egzemplarze.Count);
             Assert.AreEqual(0, data2.zdarzenia.Count);
 
-
             DeserializationJSON deserialization = new DeserializationJSON();
             deserialization.DeserializeJSON(data2);
-
-
-
+    
             Assert.AreEqual(2, data2.czytelnicy.Count);
             Assert.AreEqual(3, data2.katalogi.Count);
             Assert.AreEqual(5, data2.egzemplarze.Count);

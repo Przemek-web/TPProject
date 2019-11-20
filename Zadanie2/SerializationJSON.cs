@@ -12,14 +12,12 @@ namespace Zadanie2
 {
     public class SerializationJSON
     {
-
         private void SerializeJSONWykaz(IEnumerable<Wykaz> wykaz, string path)
         {
             string json = JsonConvert.SerializeObject(wykaz, Newtonsoft.Json.Formatting.Indented,
             new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
             File.WriteAllText(@path, json);
             Console.WriteLine("Wykaz OK");
-
         }
 
         private void SerializeJSONKatalog(IEnumerable<Katalog> katalog, string path)
@@ -28,7 +26,6 @@ namespace Zadanie2
             new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
             File.WriteAllText(@path, json);
             Console.WriteLine("Katalog OK");
-
         }
 
 
@@ -37,18 +34,12 @@ namespace Zadanie2
             string json = JsonConvert.SerializeObject(opisStanu, Newtonsoft.Json.Formatting.Indented,
             new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
             File.WriteAllText(@path, json);
-            Console.WriteLine("OpisStanu OK");
-
+            Console.WriteLine("OpisStanu OK");  
         }
 
 
         private void SerializeJSONZdarzenie(IEnumerable<Zdarzenie> zdarzenie, string path)
         {
-            //  string json = JsonConvert.SerializeObject(zdarzenie, Newtonsoft.Json.Formatting.Indented,
-            // new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
-            // File.WriteAllText(@path, json);
-            // Console.WriteLine("Zdarzenie OK");
-
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.All
@@ -56,9 +47,6 @@ namespace Zadanie2
 
             string strJson = JsonConvert.SerializeObject(zdarzenie, settings);
             File.WriteAllText(@path, strJson);
-
-
-
         }
 
 
@@ -71,6 +59,5 @@ namespace Zadanie2
 
             Console.WriteLine("All OK");
         }
-
     }
 }
