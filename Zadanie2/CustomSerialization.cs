@@ -10,6 +10,7 @@ namespace Zadanie2
 {
     class CustomSerialization : IFormatter
     {
+        public static ObjectIDGenerator objectIDGenerator = new ObjectIDGenerator();
         public ISurrogateSelector SurrogateSelector { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public SerializationBinder Binder { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public StreamingContext Context { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

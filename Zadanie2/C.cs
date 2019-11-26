@@ -42,7 +42,10 @@ namespace Zadanie2
             info.AddValue("dateTimeC", this.DateTimeC);
             info.AddValue("floatC", this.Fc1);
             info.AddValue("stringC", this.Sc1);
-            //A.GetObjectData(info, context);
+
+            bool flag;
+            CustomSerialization.objectIDGenerator.GetId(A, out flag);
+            if (flag == true) { A.GetObjectData(info, context); }
         }
 
         public override string ToString()

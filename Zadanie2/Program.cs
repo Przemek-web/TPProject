@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,14 +21,17 @@ namespace Zadanie2
             A a = new A(DateTime.Now, 3.14F, "morenka", b);
             c.A = a;
 
-            serializationJSON.SerializeJsonA(a, "A.json");
+                         // JSON // 
+            //serializationJSON.SerializeJsonA(a, "A.json");
+            //DeserializationJSON deserializationJSON = new DeserializationJSON();
+            //A a_new = deserializationJSON.DeserializeJsonA("A.json");
+            //Console.Write(a_new);
 
-            DeserializationJSON deserializationJSON = new DeserializationJSON();
+                        // CSV //
             CustomSerialization customSerialization = new CustomSerialization();
             FileStream s = new FileStream("test.csv", FileMode.Append, FileAccess.Write);
             customSerialization.Serialize(s, a);
-            A a_new = deserializationJSON.DeserializeJsonA("A.json");
-            Console.Write(a_new);
+            Console.Write(c.A.Sa1);
             Console.Read();
         }
     }

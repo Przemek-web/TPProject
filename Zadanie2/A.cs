@@ -22,6 +22,9 @@ namespace Zadanie2
             Fa = fa;
             Sa = sa;
             this.b = b;
+
+            bool flag;
+            CustomSerialization.objectIDGenerator.GetId(this, out flag);
         }
 
         public DateTime DateTimeA { get => dateTimeA; set => dateTimeA = value; }
@@ -43,7 +46,10 @@ namespace Zadanie2
             info.AddValue("dateTimeA", this.DateTimeA);
             info.AddValue("floatA", this.Fa1);
             info.AddValue("stringA", this.Sa1);
-            B.GetObjectData(info, context);
+
+            bool flag;
+            CustomSerialization.objectIDGenerator.GetId(B, out flag); 
+            if(flag == true) { B.GetObjectData(info, context); }
         }
 
         public override string ToString()
