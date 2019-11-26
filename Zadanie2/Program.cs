@@ -23,6 +23,9 @@ namespace Zadanie2
             serializationJSON.SerializeJsonA(a, "A.json");
 
             DeserializationJSON deserializationJSON = new DeserializationJSON();
+            CustomSerialization customSerialization = new CustomSerialization();
+            FileStream s = new FileStream("test.csv", FileMode.Append, FileAccess.Write);
+            customSerialization.Serialize(s, a);
             A a_new = deserializationJSON.DeserializeJsonA("A.json");
             Console.Write(a_new);
             Console.Read();
