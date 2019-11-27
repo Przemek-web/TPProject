@@ -28,7 +28,7 @@ namespace Zadanie2
             SerializationCSV.SerializeA(a, "A.csv");
 
             A a1 = DeserializationCSV.DeserializeA("A.csv");
-            Console.WriteLine(a1);
+            Console.WriteLine(a1 = a1.B.C.A);
         }
     }
 
