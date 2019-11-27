@@ -31,10 +31,13 @@ namespace Zadanie2
 
         public C(SerializationInfo info, StreamingContext streamingContext)
         {
-            this.DateTimeC = DateTime.Parse(info.GetString("dateTime")).ToLocalTime();
+            this.DateTimeC = DateTime.Parse(info.GetString("dateTimeC")).ToLocalTime();
             this.Fc1 = float.Parse((info.GetString("floatC")));
             this.Sc1 = info.GetString("stringC");
-            //this.A = ?????
+
+            //this.A = new A(info, streamingContext);
+            this.A = new A(DateTime.Parse(info.GetString("dateTimeA")).ToLocalTime(), float.Parse(info.GetString("floatA")), info.GetString("stringA"),
+                new B(DateTime.Parse(info.GetString("dateTimeB")).ToLocalTime(), float.Parse(info.GetString("floatB")), info.GetString("stringB"), this));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

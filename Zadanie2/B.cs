@@ -36,7 +36,11 @@ namespace Zadanie2
             this.DateTimeB = DateTime.Parse(info.GetString("dateTimeB")).ToLocalTime();
             this.Fb1 = float.Parse((info.GetString("floatB")));
             this.Sb1 = info.GetString("stringB");
-            //this.C = ?????
+
+            //this.C = new C(info, streamingContext);
+
+            this.C = new C(DateTime.Parse(info.GetString("dateTimeC")).ToLocalTime(), float.Parse(info.GetString("floatC")), info.GetString("stringC"),
+                 new A(DateTime.Parse(info.GetString("dateTimeA")).ToLocalTime(), float.Parse(info.GetString("floatA")), info.GetString("stringA"), this));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

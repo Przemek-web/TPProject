@@ -11,16 +11,6 @@ namespace Zadanie2
 {
     public class Program
     {
-        private Stream GenerateStreamFromString(string s)
-        {
-            var stream = new MemoryStream();
-            var writer = new StreamWriter(stream);
-            writer.Write(s);
-            writer.Flush();
-            stream.Position = 0;
-            return stream;
-        }
-
         static void Main(string[] args)
         {   
             SerializationJSON serializationJSON = new SerializationJSON();
@@ -28,7 +18,6 @@ namespace Zadanie2
             B b = new B(DateTime.Now, 5.0F, "zapraszam", c);
             A a = new A(DateTime.Now, 3.14F, "morenka",b);
             c.A = a;
-
             // JSON // 
             //serializationJSON.SerializeJsonA(a, "A.json");
             //DeserializationJSON deserializationJSON = new DeserializationJSON();
@@ -38,8 +27,8 @@ namespace Zadanie2
             // CSV //
             SerializationCSV.SerializeA(a, "A.csv");
 
-            //A a1 = DeserializationCSV.DeserializeA("A.csv");
-            Console.WriteLine();
+            A a1 = DeserializationCSV.DeserializeA("A.csv");
+            Console.WriteLine(a1);
         }
     }
 
