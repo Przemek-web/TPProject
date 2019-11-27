@@ -18,7 +18,7 @@ namespace Zadanie2
         [JsonConstructor]
         public C(DateTime dateTime, float fc, string sc, A a)
         {
-            this.dateTimeC = dateTime;
+            dateTimeC = dateTime;
             Fc = fc;
             Sc = sc;
             this.a = a;
@@ -44,7 +44,8 @@ namespace Zadanie2
             info.AddValue("stringC", this.Sc1);
 
             bool flag;
-            CustomSerialization.objectIDGenerator.GetId(A, out flag);
+            FormatterCSV<A>.objectIDGenerator.GetId(this, out flag);
+            FormatterCSV<A>.objectIDGenerator.GetId(A, out flag);
             if (flag == true) { A.GetObjectData(info, context); }
         }
 

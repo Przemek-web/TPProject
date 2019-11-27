@@ -19,7 +19,7 @@ namespace Zadanie2
         [JsonConstructor]
         public B(DateTime dateTime, float fb, string sb, C c)
         {
-            this.dateTimeB = dateTime;
+            dateTimeB = dateTime;
             Fb = fb;
             Sb = sb;
             this.c = c;
@@ -46,8 +46,9 @@ namespace Zadanie2
             info.AddValue("stringB", this.Sb1);
 
             bool flag;
-            CustomSerialization.objectIDGenerator.GetId(C, out flag);
-            if (flag == true) { C.GetObjectData(info, context); }          
+            FormatterCSV<A>.objectIDGenerator.GetId(this, out flag);
+            FormatterCSV<A>.objectIDGenerator.GetId(C, out flag);
+            if (flag != false) { C.GetObjectData(info, context); }       
         }
 
         public override string ToString()

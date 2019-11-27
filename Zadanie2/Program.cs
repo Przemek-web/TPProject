@@ -7,32 +7,41 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-
 namespace Zadanie2
 {
     public class Program
     {
+        private Stream GenerateStreamFromString(string s)
+        {
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
+        }
 
         static void Main(string[] args)
         {   
             SerializationJSON serializationJSON = new SerializationJSON();
             C c = new C(DateTime.Now, 14.32F, "tutaj",null);
             B b = new B(DateTime.Now, 5.0F, "zapraszam", c);
-            A a = new A(DateTime.Now, 3.14F, "morenka", b);
+            A a = new A(DateTime.Now, 3.14F, "morenka",b);
             c.A = a;
 
-                         // JSON // 
+            // JSON // 
             //serializationJSON.SerializeJsonA(a, "A.json");
             //DeserializationJSON deserializationJSON = new DeserializationJSON();
             //A a_new = deserializationJSON.DeserializeJsonA("A.json");
             //Console.Write(a_new);
 
-                        // CSV //
-            CustomSerialization customSerialization = new CustomSerialization();
-            FileStream s = new FileStream("test.csv", FileMode.Append, FileAccess.Write);
-            customSerialization.Serialize(s, a);
-            Console.Write(c.A.Sa1);
-            Console.Read();
+            // CSV //
+            SerializationCSV.SerializeA(a, "A.csv");
+
+            //A a1 = DeserializationCSV.DeserializeA("A.csv");
+            Console.WriteLine();
         }
     }
+
+   
 }

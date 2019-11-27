@@ -18,13 +18,10 @@ namespace Zadanie2
         [JsonConstructor]
         public A(DateTime dateTime, float fa, string sa, B b)
         {
-            this.dateTimeA = dateTime;
+            dateTimeA = dateTime;
             Fa = fa;
             Sa = sa;
             this.b = b;
-
-            bool flag;
-            CustomSerialization.objectIDGenerator.GetId(this, out flag);
         }
 
         public DateTime DateTimeA { get => dateTimeA; set => dateTimeA = value; }
@@ -39,6 +36,7 @@ namespace Zadanie2
             this.Fa1 = float.Parse((info.GetString("floatA")));
             this.Sa1 = info.GetString("stringA");
             //this.B = ?????
+            // trzeba dac cos w stylu 
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -48,8 +46,9 @@ namespace Zadanie2
             info.AddValue("stringA", this.Sa1);
 
             bool flag;
-            CustomSerialization.objectIDGenerator.GetId(B, out flag); 
-            if(flag == true) { B.GetObjectData(info, context); }
+            FormatterCSV<A>.objectIDGenerator.GetId(this, out flag);
+            FormatterCSV<A>.objectIDGenerator.GetId(B, out flag);
+            if(flag != false) { B.GetObjectData(info, context); }
         }
 
         public override string ToString()
