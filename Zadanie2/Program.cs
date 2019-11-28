@@ -51,6 +51,8 @@ namespace Zadanie2
                         A a_a = new A(DateTime.Now, 3.14F, "tekstA", b_a);
                         c_a.A = a_a;
 
+                        Console.WriteLine(a_a.DateTimeA);
+
 
 
                        SerializationCSV.SerializeA(a_a, "A.csv");
@@ -97,10 +99,10 @@ namespace Zadanie2
                         Console.WriteLine(newc == newc.A.B.C);
                         Console.WriteLine(newc.Equals(newc.A.B.C));
 
-                        
-                        
 
 
+
+                        Console.WriteLine(newa.DateTimeA);
                         break;
                  
                     case 5:
