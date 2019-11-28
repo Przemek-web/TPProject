@@ -2,81 +2,110 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using Zadanie1;
-using Zadanie1.Tests;
 
 
 namespace Zadanie2
 {
     public class Program
     {
-        
         static void Main(string[] args)
         {
-            int choice;
+          
+            
+            int check;
 
             do
             {
-                Console.WriteLine("Podaj sposób wstępnego wypełniania repozytorium danymi:\n" +
-                 "1 - Serializacja JSON \n" + "2 - Deserializacja JSON \n" + "3 - Serializacja CSV \n" +
-                 "4 - Wyjscie\n");
+                Console.WriteLine("Podaj swoja opcje: ");
+                Console.WriteLine("1-SerializacjaJSON, 2- SerializacjaWłasnaCSV 3- DeserializacjaJSON, 4- DeserializacjaWłasnaCSV, 5- Koniec");
+                check = Convert.ToInt32(Console.ReadLine());
 
 
-                choice = Convert.ToInt32(Console.ReadLine());
-                switch (choice)
+
+                switch (check)
                 {
                     case 1:
-                        DataContext data1 = new DataContext();
-                        WypelnianieStalymi stale1 = new WypelnianieStalymi();
-                        DataRepository repository1 = new DataRepository(data1, stale1);
-                        repository1.FillData();
-                        DataService service1 = new DataService(repository1);
-                        SerializationJSON serialization = new SerializationJSON();
-                        serialization.SerializeJSON(repository1);
+                        C c = new C(DateTime.UtcNow, 14.32F, "tekstC", null);
+                        B b = new B(DateTime.UtcNow, 5.0F, "tekstB", c);
+                        A a = new A(DateTime.UtcNow, 3.14F, "tekstA", b);
+                        c.A = a;
+
+                            
+                        SerializationJSON serializationJSON = new SerializationJSON();
+                        serializationJSON.SerializeJsonA(a, "A.json");
+                        serializationJSON.SerializeJsonB(b, "B.json");
+                        serializationJSON.SerializeJsonC(c, "C.json");
+                        
+
                         break;
                     case 2:
-                        DataContext data2 = new DataContext();
-                        PusteWypelnienie pusteWypelnienie = new PusteWypelnienie();
-                        DataRepository repository2 = new DataRepository(data2, pusteWypelnienie);
-                        repository2.FillData();
-                        DataService service2 = new DataService(repository2);
-
-                        Console.WriteLine("Przed deserializacja: ");
-                        service2.Wyswietl(service2.WszystkiePozycjeWykazu());
-                        service2.Wyswietl(service2.WszystkiePozycjeKatalogu());
-                        service2.Wyswietl(service2.WszystkiePozycjeOpisStanu());
+                        
+                         C c_a = new C(DateTime.UtcNow, 14.32F, "tekstC", null);
+                        B b_a = new B(DateTime.UtcNow, 5.0F, "tekstB", c_a);
+                        A a_a = new A(DateTime.UtcNow, 3.14F, "tekstA", b_a);
+                        c_a.A = a_a;
 
 
-                        DeserializationJSON deserialization = new DeserializationJSON();
-                        deserialization.DeserializeJSON(data2);
 
-                        Console.WriteLine("Po deserializacji: ");
 
-                        service2.Wyswietl(service2.WszystkiePozycjeWykazu());
-                        service2.Wyswietl(service2.WszystkiePozycjeKatalogu());
-                        service2.Wyswietl(service2.WszystkiePozycjeOpisStanu());
-                        service2.Wyswietl(service2.WszystkiePozycjeZdarzen());
+                       SerializationCSV.SerializeA(a_a, "A.csv");
+
+                        C c_b = new C(DateTime.UtcNow, 14.32F, "tekstC", null);
+                        B b_b = new B(DateTime.UtcNow, 5.0F, "tekstB", c_b);
+                        A a_b = new A(DateTime.UtcNow, 3.14F, "tekstA", b_b);
+                        c_b.A = a_b;
+                        SerializationCSV.SerializeB(b_b, "B.csv");
+
+                        C c_c = new C(DateTime.UtcNow, 14.32F, "tekstC", null);
+                        B b_c = new B(DateTime.UtcNow, 5.0F, "tekstB", c_c);
+                        A a_c = new A(DateTime.UtcNow, 3.14F, "tekstA", b_c);
+                        c_c.A = a_c;
+
+                        SerializationCSV.SerializeC(c_c, "C.csv");
                         break;
                     case 3:
-                        DataContext data3 = new DataContext();
-                        WypelnianieStalymi stale3 = new WypelnianieStalymi();
-                        DataRepository repository3 = new DataRepository(data3, stale3);
-                        repository3.FillData();
-                        DataService service3 = new DataService(repository3);
-                        CustomSerialization customSerialization = new CustomSerialization();
-                        customSerialization.SerializeCSV(repository3);
+                        DeserializationJSON deserializationJSON = new DeserializationJSON();
+                        A a_new = deserializationJSON.DeserializeJsonA("A.json");
+                        B b_new = deserializationJSON.DeserializeJsonB("B.json");
+                        C c_new = deserializationJSON.DeserializeJsonC("C.json");
+
+                        Console.WriteLine("Zdeserializowany obiekt A:");
+                        Console.WriteLine(a_new);
+                        Console.WriteLine("\n \n");
+                        Console.WriteLine("Zdeserializowany obiekt B:");
+                        Console.WriteLine(b_new);
+                        Console.WriteLine("\n \n");
+                        Console.WriteLine("Zdeserializowany obiekt C:");
+                        Console.WriteLine(c_new);
+                        Console.WriteLine("\n \n");
+                      
+                       
                         break;
+                   
                     case 4:
-                        Console.WriteLine("Koniec programu");
+                        A newa = DeserializationCSV.DeserializeA("A.csv");
+                        B newb = DeserializationCSV.DeserializeB("B.csv");
+                        C newc = DeserializationCSV.DeserializeC("C.csv");
+
+                        Console.WriteLine(newa == newa.B.C.A);
+                        Console.WriteLine(newb == newb.C.A.B);
+                        Console.WriteLine(newc == newc.A.B.C);
+                        Console.WriteLine(newc.Equals(newc.A.B.C));
+
+                       
                         break;
-                    default:
-                        Console.WriteLine("Błędny wybór");
+                 
+                    case 5:
+                        Console.WriteLine("Koniec programu");
                         break;
 
                 }
-            } while (choice != 3);
+            }
+            while (check != 5);
         }
+
     }
 }
