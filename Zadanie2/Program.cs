@@ -13,32 +13,9 @@ namespace Zadanie2
     {
         static void Main(string[] args)
         {
-            /* SerializationJSON serializationJSON = new SerializationJSON();
-             C c = new C(DateTime.Now, 14.32F, "tutaj",null);
-             B b = new B(DateTime.Now, 5.0F, "zapraszam", c);
-             A a = new A(DateTime.Now, 3.14F, "morenka",b);
-             c.A = a;
-             // JSON // 
-             //serializationJSON.SerializeJsonA(a, "A.json");
-             //DeserializationJSON deserializationJSON = new DeserializationJSON();
-             //A a_new = deserializationJSON.DeserializeJsonA("A.json");
-             //Console.Write(a_new);
-
-             // CSV //
-             SerializationCSV.SerializeA(a, "A.csv");
-
-             A a1 = DeserializationCSV.DeserializeA("A.csv");
-             Console.WriteLine(a1 = a1.B.C.A); */
-
-            C c = new C(DateTime.Now, 14.32F, "tekstC", null);
-            B b = new B(DateTime.Now, 5.0F, "tekstB", c);
-            A a = new A(DateTime.Now, 3.14F, "tekstA", b);
-            c.A = a;
-
-            Console.WriteLine(c.A.Sa1);
-            Console.WriteLine(c.A.Fa1);
+          
+            
             int check;
-
 
             do
             {
@@ -51,6 +28,15 @@ namespace Zadanie2
                 switch (check)
                 {
                     case 1:
+                        C c = new C(DateTime.Now, 14.32F, "tekstC", null);
+                        B b = new B(DateTime.Now, 5.0F, "tekstB", c);
+                        A a = new A(DateTime.Now, 3.14F, "tekstA", b);
+                        c.A = a;
+
+                        
+
+                        Console.WriteLine(c.A.Sa1);
+                        Console.WriteLine(c.A.Fa1);
                         SerializationJSON serializationJSON = new SerializationJSON();
                         serializationJSON.SerializeJsonA(a, "A.json");
                         serializationJSON.SerializeJsonB(b, "B.json");
@@ -59,14 +45,28 @@ namespace Zadanie2
 
                         break;
                     case 2:
-                        //SerializationCSV customSerialization = new SerializationCSV();
-                        //FileStream s = new FileStream("test.csv", FileMode.Append, FileAccess.Write);
+                        
+                         C c_a = new C(DateTime.Now, 14.32F, "tekstC", null);
+                        B b_a = new B(DateTime.Now, 5.0F, "tekstB", c_a);
+                        A a_a = new A(DateTime.Now, 3.14F, "tekstA", b_a);
+                        c_a.A = a_a;
 
-                        //FileStream s = new FileStream("test.csv", FileMode.Create, FileAccess.Write);
-                        SerializationCSV.SerializeA(a, "A.csv");
 
 
-                        //Console.Read();
+                       SerializationCSV.SerializeA(a_a, "A.csv");
+
+                        C c_b = new C(DateTime.Now, 14.32F, "tekstC", null);
+                        B b_b = new B(DateTime.Now, 5.0F, "tekstB", c_b);
+                        A a_b = new A(DateTime.Now, 3.14F, "tekstA", b_b);
+                        c_b.A = a_b;
+                        SerializationCSV.SerializeB(b_b, "B.csv");
+
+                        C c_c = new C(DateTime.Now, 14.32F, "tekstC", null);
+                        B b_c = new B(DateTime.Now, 5.0F, "tekstB", c_c);
+                        A a_c = new A(DateTime.Now, 3.14F, "tekstA", b_c);
+                        c_c.A = a_c;
+
+                        SerializationCSV.SerializeC(c_c, "C.csv");
                         break;
                     case 3:
                         DeserializationJSON deserializationJSON = new DeserializationJSON();
@@ -86,18 +86,23 @@ namespace Zadanie2
                         Console.WriteLine(c_new.A.Sa1);
                         Console.WriteLine(c_new.A.Fa1);
                         break;
-                    //Console.WriteLine("\nPrzerwa \n");
-                    //Console.WriteLine(b_new.C.Fc1);
-                    //Console.WriteLine(b_new.C.Sc1);
-                    //Console.WriteLine("\nPrzerwa \n");
-                    //Console.WriteLine(a_new.B.Fb1);
-                    //Console.WriteLine(a_new.B.Sb1);
+                   
                     case 4:
-                        A a1 = DeserializationCSV.DeserializeA("A.csv");
-                        //Console.WriteLine(a1.B);
-                        Console.WriteLine(a1 == a1.B.C.A);
+                        A newa = DeserializationCSV.DeserializeA("A.csv");
+                        B newb = DeserializationCSV.DeserializeB("B.csv");
+                        C newc = DeserializationCSV.DeserializeC("C.csv");
+
+                        Console.WriteLine(newa == newa.B.C.A);
+                        Console.WriteLine(newb == newb.C.A.B);
+                        Console.WriteLine(newc == newc.A.B.C);
+                        Console.WriteLine(newc.Equals(newc.A.B.C));
+
+                        
+                        
+
 
                         break;
+                 
                     case 5:
                         Console.WriteLine("Koniec programu");
                         break;

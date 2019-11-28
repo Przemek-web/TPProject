@@ -20,6 +20,30 @@ namespace Zadanie2
             return a; 
         }
 
+
+        public static B DeserializeB(string filename)
+        {
+            String line;
+            FormatterCSV<B> formatterCSV = new FormatterCSV<B>();
+            StreamReader file = new StreamReader(filename);
+            line = file.ReadLine();
+            B b = (B)formatterCSV.Deserialize(MakeStream(line));
+            file.Close();
+            return b;
+        }
+
+
+        public static C DeserializeC(string filename)
+        {
+            String line;
+            FormatterCSV<C> formatterCSV = new FormatterCSV<C>();
+            StreamReader file = new StreamReader(filename);
+            line = file.ReadLine();
+            C c = (C)formatterCSV.Deserialize(MakeStream(line));
+            file.Close();
+            return c;
+        }
+
         public static Stream MakeStream(string s)
         {
             var stream = new MemoryStream();
