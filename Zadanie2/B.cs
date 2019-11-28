@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -30,6 +31,7 @@ namespace Zadanie2
         public string Sb1 { get => Sb; set => Sb = value; }
         public C C { get => c; set => c = value; }
 
+        
 
         public B(SerializationInfo info, StreamingContext streamingContext)
         {

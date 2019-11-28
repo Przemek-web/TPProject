@@ -10,9 +10,9 @@ namespace Zadanie2Tests
         [TestMethod]
         public void TestJSON()
         {
-            C c = new C(DateTime.Now, 14.32F, "tekstC", null);
-            B b = new B(DateTime.Now, 5.0F, "tekstB", c);
-            A a = new A(DateTime.Now, 3.14F, "tekstA", b);
+            C c = new C(DateTime.Today, 14.32F, "tekstC", null);
+            B b = new B(DateTime.Today, 5.0F, "tekstB", c);
+            A a = new A(DateTime.Today, 3.14F, "tekstA", b);
             c.A = a;
             SerializationJSON serializationJSON = new SerializationJSON();
             serializationJSON.SerializeJsonA(a, "A.json");
@@ -32,7 +32,7 @@ namespace Zadanie2Tests
             Assert.AreEqual(c.Sc1, c_new.Sc1);
             Assert.AreEqual(a.Sa1, c.A.Sa1);
             Assert.IsTrue(a == c.A);
-            //Assert.IsTrue(a_new == c_new.A);
+          
 
                 
 
@@ -44,23 +44,23 @@ namespace Zadanie2Tests
         [TestMethod]
         public void TestCSV()
         {
-            C c_a = new C(DateTime.Now, 14.32F, "tekstC", null);
-            B b_a = new B(DateTime.Now, 5.0F, "tekstB", c_a);
-            A a_a = new A(DateTime.Now, 3.14F, "tekstA", b_a);
+            C c_a = new C(new DateTime(2019,2,3,1,1,1) , 14.32F, "tekstC", null);
+            B b_a = new B(new DateTime(2019, 2, 3,1,1,1), 5.0F, "tekstB", c_a);
+            A a_a = new A(new DateTime(2019, 2, 3, 1, 1, 1), 3.14F, "tekstA", b_a);
             c_a.A = a_a;
 
             SerializationCSV.SerializeA(a_a, "Atest.csv");
 
-            C c_b = new C(DateTime.Now, 14.32F, "tekstC", null);
-            B b_b = new B(DateTime.Now, 5.0F, "tekstB", c_b);
-            A a_b = new A(DateTime.Now, 3.14F, "tekstA", b_b);
+            C c_b = new C(new DateTime(2019, 2, 3, 1, 1, 1), 14.32F, "tekstC", null);
+            B b_b = new B(new DateTime(2019, 2, 3, 1, 1, 1), 5.0F, "tekstB", c_b);
+            A a_b = new A(new DateTime(2019, 2, 3, 1, 1, 1), 3.14F, "tekstA", b_b);
             c_b.A = a_b;
             SerializationCSV.SerializeB(b_b, "Btest.csv");
 
 
-            C c_c = new C(DateTime.Now, 14.32F, "tekstC", null);
-            B b_c = new B(DateTime.Now, 5.0F, "tekstB", c_c);
-            A a_c = new A(DateTime.Now, 3.14F, "tekstA", b_c);
+            C c_c = new C(new DateTime(2019, 2, 3, 1, 1, 1), 14.32F, "tekstC", null);
+            B b_c = new B(new DateTime(2019, 2, 3, 1, 1, 1), 5.0F, "tekstB", c_c);
+            A a_c = new A(new DateTime(2019, 2, 3, 1, 1, 1), 3.14F, "tekstA", b_c);
             c_c.A = a_c;
             SerializationCSV.SerializeC(c_c, "Ctest.csv");
 
@@ -80,7 +80,7 @@ namespace Zadanie2Tests
 
             Assert.AreEqual(newa.Fa1, a_a.Fa1);
             Assert.AreEqual(newa.Sa1, a_a.Sa1);
-            //Assert.AreEqual(newa.DateTimeA, a_a.DateTimeA);
+            Assert.AreEqual(newa.DateTimeA.Date, a_a.DateTimeA.Date);
 
         }
 

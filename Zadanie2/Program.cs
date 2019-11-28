@@ -28,44 +28,40 @@ namespace Zadanie2
                 switch (check)
                 {
                     case 1:
-                        C c = new C(DateTime.Now, 14.32F, "tekstC", null);
-                        B b = new B(DateTime.Now, 5.0F, "tekstB", c);
-                        A a = new A(DateTime.Now, 3.14F, "tekstA", b);
+                        C c = new C(DateTime.UtcNow, 14.32F, "tekstC", null);
+                        B b = new B(DateTime.UtcNow, 5.0F, "tekstB", c);
+                        A a = new A(DateTime.UtcNow, 3.14F, "tekstA", b);
                         c.A = a;
 
-                        
-
-                        Console.WriteLine(c.A.Sa1);
-                        Console.WriteLine(c.A.Fa1);
+                            
                         SerializationJSON serializationJSON = new SerializationJSON();
                         serializationJSON.SerializeJsonA(a, "A.json");
                         serializationJSON.SerializeJsonB(b, "B.json");
                         serializationJSON.SerializeJsonC(c, "C.json");
-                        Console.WriteLine(c.A.Sa1);
+                        
 
                         break;
                     case 2:
                         
-                         C c_a = new C(DateTime.Now, 14.32F, "tekstC", null);
-                        B b_a = new B(DateTime.Now, 5.0F, "tekstB", c_a);
-                        A a_a = new A(DateTime.Now, 3.14F, "tekstA", b_a);
+                         C c_a = new C(DateTime.UtcNow, 14.32F, "tekstC", null);
+                        B b_a = new B(DateTime.UtcNow, 5.0F, "tekstB", c_a);
+                        A a_a = new A(DateTime.UtcNow, 3.14F, "tekstA", b_a);
                         c_a.A = a_a;
 
-                        Console.WriteLine(a_a.DateTimeA);
 
 
 
                        SerializationCSV.SerializeA(a_a, "A.csv");
 
-                        C c_b = new C(DateTime.Now, 14.32F, "tekstC", null);
-                        B b_b = new B(DateTime.Now, 5.0F, "tekstB", c_b);
-                        A a_b = new A(DateTime.Now, 3.14F, "tekstA", b_b);
+                        C c_b = new C(DateTime.UtcNow, 14.32F, "tekstC", null);
+                        B b_b = new B(DateTime.UtcNow, 5.0F, "tekstB", c_b);
+                        A a_b = new A(DateTime.UtcNow, 3.14F, "tekstA", b_b);
                         c_b.A = a_b;
                         SerializationCSV.SerializeB(b_b, "B.csv");
 
-                        C c_c = new C(DateTime.Now, 14.32F, "tekstC", null);
-                        B b_c = new B(DateTime.Now, 5.0F, "tekstB", c_c);
-                        A a_c = new A(DateTime.Now, 3.14F, "tekstA", b_c);
+                        C c_c = new C(DateTime.UtcNow, 14.32F, "tekstC", null);
+                        B b_c = new B(DateTime.UtcNow, 5.0F, "tekstB", c_c);
+                        A a_c = new A(DateTime.UtcNow, 3.14F, "tekstA", b_c);
                         c_c.A = a_c;
 
                         SerializationCSV.SerializeC(c_c, "C.csv");
@@ -78,15 +74,15 @@ namespace Zadanie2
 
                         Console.WriteLine("Zdeserializowany obiekt A:");
                         Console.WriteLine(a_new);
-                        Console.WriteLine("\nPrzerwa \n");
+                        Console.WriteLine("\n \n");
                         Console.WriteLine("Zdeserializowany obiekt B:");
                         Console.WriteLine(b_new);
-                        Console.WriteLine("\nPrzerwa \n");
+                        Console.WriteLine("\n \n");
                         Console.WriteLine("Zdeserializowany obiekt C:");
                         Console.WriteLine(c_new);
-                        Console.WriteLine("\nPrzerwa \n");
-                        Console.WriteLine(c_new.A.Sa1);
-                        Console.WriteLine(c_new.A.Fa1);
+                        Console.WriteLine("\n \n");
+                      
+                       
                         break;
                    
                     case 4:
@@ -99,10 +95,7 @@ namespace Zadanie2
                         Console.WriteLine(newc == newc.A.B.C);
                         Console.WriteLine(newc.Equals(newc.A.B.C));
 
-
-
-
-                        Console.WriteLine(newa.DateTimeA);
+                       
                         break;
                  
                     case 5:

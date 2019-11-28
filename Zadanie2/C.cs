@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -37,7 +38,7 @@ namespace Zadanie2
 
             //this.A = new A(info, streamingContext);
             this.A = new A(DateTime.Parse(info.GetString("dateTimeA")).ToLocalTime(), float.Parse(info.GetString("floatA")), info.GetString("stringA"),
-                new B(DateTime.Parse(info.GetString("dateTimeB")).ToLocalTime(), float.Parse(info.GetString("floatB")), info.GetString("stringB"), this));
+                 new B(DateTime.Parse(info.GetString("dateTimeB")).ToLocalTime(), float.Parse(info.GetString("floatB")), info.GetString("stringB"), this));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
