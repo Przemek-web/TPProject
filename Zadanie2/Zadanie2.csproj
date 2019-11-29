@@ -47,9 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="A.cs" />
-    <Compile Include="B.cs" />
-    <Compile Include="C.cs" />
+    <Compile Include="classA.cs" />
+    <Compile Include="classB.cs" />
+    <Compile Include="classC.cs" />
     <Compile Include="DeserializationCSV.cs" />
     <Compile Include="FormatterCSV.cs" />
     <Compile Include="DeserializationJSON.cs" />

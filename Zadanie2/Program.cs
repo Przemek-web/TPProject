@@ -14,21 +14,18 @@ namespace Zadanie2
         static void Main(string[] args)
         {   
             SerializationJSON serializationJSON = new SerializationJSON();
-            C c = new C(DateTime.Now, 14.32F, "tutaj",null);
-            B b = new B(DateTime.Now, 5.0F, "zapraszam", c);
-            A a = new A(DateTime.Now, 3.14F, "morenka",b);
-            c.A = a;
-            // JSON // 
-            //serializationJSON.SerializeJsonA(a, "A.json");
-            //DeserializationJSON deserializationJSON = new DeserializationJSON();
-            //A a_new = deserializationJSON.DeserializeJsonA("A.json");
-            //Console.Write(a_new);
+            classC c = new classC(DateTime.Now, 14.3F, "II",null);
+            classB b = new classB(DateTime.Now, 5.1F, "Paweł", c);
+            classA a = new classA(DateTime.Now, 3.8F, "Jan",b);
+            c.aRef = a;
 
-            // CSV //
-            SerializationCSV.SerializeA(a, "A.csv");
+            FormatterCSV formatterCSV = new FormatterCSV();
 
-            A a1 = DeserializationCSV.DeserializeA("A.csv");
-            Console.WriteLine(a1);
+            using (FileStream stream = File.Open("A.csv", FileMode.OpenOrCreate))
+            {
+                formatterCSV.Serialize(stream, a);
+            }
+
         }
     }
 
