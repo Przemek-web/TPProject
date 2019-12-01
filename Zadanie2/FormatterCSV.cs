@@ -25,32 +25,75 @@ namespace Zadanie2
         }
 
         public override object Deserialize(Stream serializationStream)
-        {
-            //T returnObject = null;
-            //using (StreamReader stream = new StreamReader(serializationStream))
-            //{
-            //    String line = stream.ReadLine();
-            //    T obj = (T)FormatterServices.GetUninitializedObject(typeof(T));
-            //    // var members = FormatterServices.GetSerializableMembers(obj.GetType(), Context);
-            //    // object[] data = new object[members.Length];
-            //    // ISerializable type = (ISerializable)obj;
-            //    SerializationInfo _info = new SerializationInfo(obj.GetType(), new FormatterConverter());
-            //    string[] fields = line.Split(';');
-            //    for (int i = 0; i < fields.Length - 1; ++i)
-            //    {
-            //        string[] word = fields[i].Split('-');
-            //        _info.AddValue(word[0], word[1]);
-            //    }
+        {        
+            string resultId = null;
+            Dictionary<string, object> objects = new Dictionary<string, object>();
+            List<Tuple<string, string, string>> references = new List<Tuple<string, string, string>>();
+            Dictionary<string, SerializationInfo> info = new Dictionary<string, SerializationInfo>();
 
-            //    var constructor = obj.GetType().GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new[] { typeof(SerializationInfo), typeof(StreamingContext) }, null);
-            //    constructor.Invoke(obj, new object[] { _info, Context });
-            //    returnObject = obj;
+            using (StreamReader reader = new StreamReader(serializationStream))
+            {
+                string id = null;
+                bool flag = true;
+                string line;
 
-            //    //  returnObject = FormatterServices.PopulateObjectMembers(obj, members, data))
+                while ((line = reader.ReadLine()) != null && line.Length > 1)
+                {
+                    string[] fields = line.Split(';');
 
-            //}
-            //return returnObject;
-                throw new NotImplementedException();
+                    // Pierwsze pole - obiekt
+                    string[] objectField = fields[0].Split('-');
+
+                    Type objType = Type.GetType(objectField[0]);
+                    if (objType is null)
+                        throw new SerializationException();
+
+                    id = objectField[1];
+                    objects.Add(id, FormatterServices.GetUninitializedObject(objType));
+                    info.Add(id, new SerializationInfo(objType, new FormatterConverter()));
+
+                    if (flag)
+                    {
+                        flag = false;
+                        resultId = id;
+                    }
+
+                    // Drugie pole - data
+                    string[] dateField = fields[1].Split('-');
+
+                    info[id].AddValue(dateField[0], DateTime.ParseExact(dateField[1], "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture));
+
+                    // Trzecie pole - float
+                    string[] floatField = fields[2].Split('-');
+
+                    info[id].AddValue(floatField[0], float.Parse(floatField[1], CultureInfo.InvariantCulture));
+
+                    // Czwarte pole - string
+                    string[] stringField = fields[3].Split('-');
+
+                    info[id].AddValue(stringField[0], stringField[1]);
+
+                    // Piate pole - referencja
+                    string[] referenceField = fields[4].Split('-');
+
+                    references.Add(Tuple.Create(id, referenceField[0], referenceField[1]));
+                }
+            }
+
+            foreach (Tuple<string, string, string> reference in references)
+            {
+                info[reference.Item1].AddValue(reference.Item2, objects[reference.Item3]);
+            }
+
+            foreach (KeyValuePair<string, object> keyValue in objects)
+            {
+                Type[] constructorTypes = { typeof(SerializationInfo), typeof(StreamingContext) };
+                object[] constuctorParameters = { info[keyValue.Key], Context };
+
+                keyValue.Value.GetType().GetConstructor(constructorTypes).Invoke(keyValue.Value, constuctorParameters);
+            }
+
+            return objects[resultId];
         }
 
         public override void Serialize(Stream serializationStream, object graph)
@@ -101,12 +144,12 @@ namespace Zadanie2
 
         protected override void WriteDateTime(DateTime val, string name)
         {
-            objectString.Append(name + "-" + val.ToString("dd/MM/yyyy HH:mm") + ";");
+            objectString.Append(name + "-" + val.ToString("dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture) + ";");
         }
 
         protected override void WriteSingle(float val, string name)
         {
-            objectString.Append(name + "-" + val.ToString("0.0", CultureInfo.InvariantCulture) + ";");
+            objectString.Append(name + "-" + val.ToString(CultureInfo.InvariantCulture) + ";");
         }
 
         private void WriteString(string val, string name)

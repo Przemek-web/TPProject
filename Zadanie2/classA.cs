@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 
 namespace Zadanie2
 {
+    [Serializable]
     public class classA : ISerializable
     {
         public DateTime dateTime { get; set; }
@@ -26,7 +27,12 @@ namespace Zadanie2
         }
 
         public classA(SerializationInfo info, StreamingContext streamingContext)
-        {}
+        {
+            dateTime = (DateTime)info.GetValue(nameof(dateTime), typeof(DateTime));
+            number = info.GetSingle(nameof(number));
+            name = info.GetValue(nameof(name), typeof(string)) as string;
+            bRef = info.GetValue(nameof(bRef), typeof(classB)) as classB;
+        }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {

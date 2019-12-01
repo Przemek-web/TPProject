@@ -12,11 +12,11 @@ namespace Zadanie2
     public class Program
     {
         static void Main(string[] args)
-        {   
+        {
             SerializationJSON serializationJSON = new SerializationJSON();
-            classC c = new classC(DateTime.Now, 14.3F, "II",null);
+            classC c = new classC(DateTime.Now, 14.3F, "II", null);
             classB b = new classB(DateTime.Now, 5.1F, "Paweł", c);
-            classA a = new classA(DateTime.Now, 3.8F, "Jan",b);
+            classA a = new classA(DateTime.Now, 3.8F, "Jan", b);
             c.aRef = a;
 
             FormatterCSV formatterCSV = new FormatterCSV();
@@ -26,8 +26,12 @@ namespace Zadanie2
                 formatterCSV.Serialize(stream, a);
             }
 
+            classA a2;
+
+            using (FileStream stream = File.Open("A.csv", FileMode.Open))
+            {
+                a2 = (classA)formatterCSV.Deserialize(stream);
+            }
         }
     }
-
-   
 }
