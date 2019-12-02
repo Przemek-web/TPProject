@@ -32,6 +32,7 @@ namespace Zadanie2
             {
                 a2 = (classA)formatterCSV.Deserialize(stream);
             }
+            Console.WriteLine(a2.dateTime);
         }
     }
 }
