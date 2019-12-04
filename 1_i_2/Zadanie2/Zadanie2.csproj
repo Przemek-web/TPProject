@@ -50,12 +50,10 @@
     <Compile Include="classA.cs" />
     <Compile Include="classB.cs" />
     <Compile Include="classC.cs" />
-    <Compile Include="DeserializationCSV.cs" />
     <Compile Include="FormatterCSV.cs" />
     <Compile Include="DeserializationJSON.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SerializationCSV.cs" />
     <Compile Include="SerializationJSON.cs" />
   </ItemGroup>
   <ItemGroup>
