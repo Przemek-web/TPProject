@@ -12,29 +12,29 @@ namespace Zadanie2
 {
     public class DeserializationJSON
     {  
-        public A DeserializeJsonA(string path)
+        public classA DeserializeJsonA(string path)
         {
             string json = File.ReadAllText(@path);
 
-            A a = JsonConvert.DeserializeObject<A>(json, new JsonSerializerSettings 
+            classA a = JsonConvert.DeserializeObject<classA>(json, new JsonSerializerSettings 
             { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
             return a;
         }
 
-        public B DeserializeJsonB(string path)
+        public classB DeserializeJsonB(string path)
         {
             string json = File.ReadAllText(@path);
 
-            B b = JsonConvert.DeserializeObject<B>(json, new JsonSerializerSettings
+            classB b = JsonConvert.DeserializeObject<classB>(json, new JsonSerializerSettings
             { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
             return b;
         }
 
-        public C DeserializeJsonC(string path)
+        public classC DeserializeJsonC(string path)
         {
             string json = File.ReadAllText(@path);
 
-            C c = JsonConvert.DeserializeObject<C>(json, new JsonSerializerSettings
+            classC c = JsonConvert.DeserializeObject<classC>(json, new JsonSerializerSettings
             { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
             return c;
         }
