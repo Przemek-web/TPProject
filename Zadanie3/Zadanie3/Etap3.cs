@@ -75,5 +75,26 @@ namespace Zadanie3
             return query;
         }
 
+
+        public static List<Product> GetNProductsFromCategory(string categoryName, int n)
+        {
+            DataClassesDataContext dataContext = new DataClassesDataContext();
+            List<Product> query = (from product in dataContext.Product
+                                   join tab in dataContext.ProductCategory on product.ProductSubcategoryID equals tab.ProductCategoryID
+                                   where tab.Name == categoryName
+                                   select product).Take(n).ToList();
+            return query;
+        }
+
+        public static int GetTotalStandardCostByCategory(ProductCategory category)
+        {
+            DataClassesDataContext dataContext = new DataClassesDataContext();
+            decimal query = (from product in dataContext.Product
+                             where (product.ProductSubcategoryID == category.ProductCategoryID)
+                             select product.StandardCost).ToList().Sum();
+
+            return (int)query;
+        }
+
     }
 }
