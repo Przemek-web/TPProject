@@ -58,21 +58,7 @@ namespace Zadanie3Test
             Assert.AreEqual(products.Count, 4);
         }
 
-        [TestMethod()]
-        public void GetNProductsFromCategory()
-        {
-            List<Product> products = Etap3.GetNProductsFromCategory("Bikes", 5);
-            Assert.AreEqual(products.Count, 5);
-        }
 
-        [TestMethod()]
-        public void GetTotalStandardCostByCategory()
-        {
-            ProductCategory bikes = new ProductCategory
-            {
-                ProductCategoryID = 1
-            };
-            Assert.AreEqual(29880, Etap3.GetTotalStandardCostByCategory(bikes));
-        }
+
     }
 }

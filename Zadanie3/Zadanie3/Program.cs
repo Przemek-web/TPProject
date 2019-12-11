@@ -28,14 +28,6 @@ namespace Zadanie3
 
             List<Product> prod = Etap3.GetNRecentlyReviewedProducts(10);
             Console.WriteLine(prod.Count);
-
-            ProductCategory Clothing = new ProductCategory
-            {
-                ProductCategoryID = 1
-            };
-
-            int test = Etap3.GetTotalStandardCostByCategory(Clothing);
-            Console.WriteLine(test);
         }
     }
 }
