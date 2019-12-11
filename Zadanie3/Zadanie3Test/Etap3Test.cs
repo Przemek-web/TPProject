@@ -14,21 +14,51 @@ namespace Zadanie3Test
         [TestMethod()]
         public void GetProductsByNameTest()
         {
-            DataClassesDataContext db = new DataClassesDataContext();
-            List<Product> query = Etap3.GetProductsByName("Decal");
+           
+            List<Product> query = Etap3.GetProductsByName("Chain");
 
-            List<Product> check = new List<Product>();
-            Product C = (from p in db.Product where p.ProductID == 325 select p).First();
-            check.Add(C);
-            C = (from p in db.Product where p.ProductID == 326 select p).First();
-            check.Add(C);
-
-            for (int i = 0; i < query.Count(); i++)
-            {
-                if (query[i].ProductID != check[i].ProductID) Assert.Fail();
-                if (query[i].Name != check[i].Name) Assert.Fail();
-            }
-            if (query.Count() != check.Count()) Assert.Fail();
+            Assert.AreEqual(query.Count, 5);
+           
         }
+
+        [TestMethod()]
+        public void GetProductsByVendorNameTest()
+        {
+           
+            List<Product> query = Etap3.GetProductsByVendorName("Speed Corporation");
+            Assert.AreEqual(query.Count, 9);
+        }
+
+
+        [TestMethod()]
+        public void GetProductNamesByVendorNameTest()
+        {
+            List<string> query = Etap3.GetProductNamesByVendorName("Speed Corporation");
+            Assert.AreEqual(query.Count, 9);
+        }
+
+        [TestMethod()]
+        public void GetProductVendorByProductName()
+        {
+            string query = Etap3.GetProductVendorByProductName("Bearing Ball");
+            Assert.AreEqual(query, "Wood Fitness");
+        }
+
+        [TestMethod()]
+        public void GetProductsWithNRecentReviewsTest()
+        {
+            List<Product> products = Etap3.GetProductsWithNRecentReviews(10);
+            Assert.AreEqual(products.Count, 4);
+        }
+
+        [TestMethod()]
+        public void GetNRecentlyReviewedProducts()
+        {
+            List<Product> products = Etap3.GetNRecentlyReviewedProducts(10);
+            Assert.AreEqual(products.Count, 4);
+        }
+
+
+
     }
 }
