@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Etap3Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Etap4Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

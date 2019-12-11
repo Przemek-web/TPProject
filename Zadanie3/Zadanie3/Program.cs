@@ -10,24 +10,16 @@ namespace Zadanie3
     {
         static void Main(string[] args)
         {
-            DataClassesDataContext db = new DataClassesDataContext();
-            List<Product> query = Etap3.GetProductsByName("Chain");
-            Console.WriteLine(query.Count);
+           
 
-            List<Product> zob = Etap3.GetProductsByVendorName("Speed Corporation");
-            Console.WriteLine(zob.Count);
-
-            List<string> trzy = Etap3.GetProductNamesByVendorName("Speed Corporation");
-            Console.WriteLine(trzy.Count);
-
-
-            Console.WriteLine(Etap3.GetProductVendorByProductName("Bearing Ball"));
-            List<Product> products = Etap3.GetProductsWithNRecentReviews(10);
-            Console.WriteLine(products.Count);
-
-
-            List<Product> prod = Etap3.GetNRecentlyReviewedProducts(10);
-            Console.WriteLine(prod.Count);
+            DataClassesDataContext dataContext = new DataClassesDataContext();
+            List<Product> produkty = dataContext.Product.ToList();
+            List<ProductVendor> dostawcy = dataContext.ProductVendor.ToList();
+            string[] s1 = produkty.LancuchZnakowROZSZERZAJĄCA(dostawcy).Split('\n');
+            for (int i= 0;i < s1.Count();i++)
+            {
+                Console.WriteLine(s1[i]);
+            }
         }
     }
 }
