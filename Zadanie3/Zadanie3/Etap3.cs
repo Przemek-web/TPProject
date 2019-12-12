@@ -35,7 +35,7 @@ namespace Zadanie3
 
                 return query;
             }
-       }
+        }
 
 
         public static List<string> GetProductNamesByVendorName(string vendorName)
@@ -112,6 +112,6 @@ namespace Zadanie3
 
                 return (int)query;
             }
-        }   
+        }
     }
 }

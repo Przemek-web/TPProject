@@ -12,12 +12,9 @@ namespace Zadanie3
         public MyProduct(Product product)
         {
             foreach (PropertyInfo propertyInfo in product.GetType().GetProperties())
-                {
-                    if (propertyInfo.CanWrite)
-                    {
-                    propertyInfo.SetValue(this, propertyInfo.GetValue(product));
-                    }
-                }
+            {
+                if (propertyInfo.CanWrite) propertyInfo.SetValue(this, propertyInfo.GetValue(product));
+            }
         }
     }
 }

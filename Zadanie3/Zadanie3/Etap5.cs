@@ -14,16 +14,16 @@ namespace Zadanie3
             return myProductObjects.MyProducts.Where(product => product.Name.Contains(namePart)).ToList();
         }
 
-        public static List<MyProduct> GetMyProductWithNRecentReviews(int howManyReviews)
-        {
-            MyProductObjects myProductObjects = new MyProductObjects();
-            return myProductObjects.MyProducts.Where(product => product.ProductReview.Count == howManyReviews).ToList();
-        }
-
-        public static List<MyProduct> GetNRecentlyReviewedMyProducts(string categoryName, int n)
+        public static List<MyProduct> GetNMyProductsFromCategory(string categoryName, int n)
         {
             MyProductObjects myProductObjects = new MyProductObjects();
             return myProductObjects.MyProducts.Where(product => product.ProductSubcategory.Name == categoryName).OrderBy(p => p.Name).Take(n).ToList();
+        }
+
+        public static List<MyProduct> GetMyProductsWithNRecentReviews(int howManyReviews)
+        {
+            MyProductObjects myProductObjects = new MyProductObjects();
+            return myProductObjects.MyProducts.Where(product => product.ProductReview.Count == howManyReviews).ToList();
         }
     }
 }

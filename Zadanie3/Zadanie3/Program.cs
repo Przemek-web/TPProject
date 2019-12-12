@@ -10,7 +10,7 @@ namespace Zadanie3
     {
         static void Main(string[] args)
         {
-           
+
 
             DataClassesDataContext dataContext = new DataClassesDataContext();
             List<Product> produkty = dataContext.Product.ToList();
@@ -21,7 +21,7 @@ namespace Zadanie3
             //    Console.WriteLine(s1[i]);
             //}
             List<Product> products = Etap3.GetNProductsFromCategory("Bikes", 5);
-            foreach(Product product in products)
+            foreach (Product product in products)
             {
                 Console.Write(product.Name);
             }
