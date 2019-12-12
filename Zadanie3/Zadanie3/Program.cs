@@ -16,10 +16,16 @@ namespace Zadanie3
             List<Product> produkty = dataContext.Product.ToList();
             List<ProductVendor> dostawcy = dataContext.ProductVendor.ToList();
             string[] s1 = produkty.LancuchZnakowROZSZERZAJĄCA(dostawcy).Split('\n');
-            for (int i= 0;i < s1.Count();i++)
+            //for (int i= 0;i < s1.Count();i++)
+            //{
+            //    Console.WriteLine(s1[i]);
+            //}
+            List<Product> products = Etap3.GetNProductsFromCategory("Bikes", 5);
+            foreach(Product product in products)
             {
-                Console.WriteLine(s1[i]);
+                Console.Write(product.Name);
             }
+
         }
     }
 }

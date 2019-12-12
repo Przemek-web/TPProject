@@ -37,9 +37,5 @@ namespace Zadanie3
             }
             return s;
         }
-
-
-
-
     }
 }
