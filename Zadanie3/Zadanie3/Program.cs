@@ -20,13 +20,17 @@ namespace Zadanie3
             //{
             //    Console.WriteLine(s1[i]);
             //}
-          //  List<Product> products = Etap3.GetNProductsFromCategory("Bikes", 5);
-         //   foreach (Product product in products)
-         //   {
-         //       Console.Write(product.Name);
-         //   }
-
-           
+            //  List<Product> products = Etap3.GetNProductsFromCategory("Bikes", 5);
+            //   foreach (Product product in products)
+            //   {
+            //       Console.Write(product.Name);
+            //   }
+            
+           foreach(List<Product> products in Etap4.PodzielNaStrony(produkty,5,10)){
+                Console.WriteLine(products.Count);
+            }
+     
+            
         }
     }
 }

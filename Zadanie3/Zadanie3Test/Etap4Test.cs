@@ -16,10 +16,9 @@ namespace Zadanie3Test
             DataClassesDataContext dataContext = new DataClassesDataContext();
             List<Product> produkty = dataContext.Product.ToList();
            
-
             Assert.AreEqual(produkty.produktyBezKategoriiROZSZERZAJĄCA().Count, produkty.produktyBezKategoriiFROM().Count);
-            
-            
+
+            Assert.AreEqual(Etap4.PodzielNaStrony(produkty, 5, 10)[0].Count, 5);
             
         }
     }

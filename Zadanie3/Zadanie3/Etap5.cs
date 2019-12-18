@@ -28,6 +28,9 @@ namespace Zadanie3
         {
             MyProductObjects myProductObjects = new MyProductObjects();
             return myProductObjects.MyProducts.Where(product => product.ProductReview.Count.Equals(howManyReviews)).ToList();
+           
+
+            
         }
     }
 }

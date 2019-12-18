@@ -37,5 +37,19 @@ namespace Zadanie3
             }
             return s;
         }
+
+        public static List<List<Product>> PodzielNaStrony(this List<Product> produkty, int liczbaProduktow, int liczbaStron )
+        {
+            List<List<Product>> strony = new List<List<Product>>();
+            List<Product> strona = new List<Product>();
+            for (int i=0;i<liczbaStron;i++)
+            {
+                strona = produkty.Skip(liczbaProduktow * i).Take(liczbaProduktow).ToList();
+                strony.Add(strona);
+            }
+            return strony;
+        }
+
+
     }
 }
