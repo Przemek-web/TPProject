@@ -17,13 +17,17 @@ namespace Zadanie3
         public static List<MyProduct> GetNMyProductsFromCategory(string categoryName, int n)
         {
             MyProductObjects myProductObjects = new MyProductObjects();
-            return myProductObjects.MyProducts.Where(product => product.ProductSubcategory.Name == categoryName).OrderBy(p => p.Name).Take(n).ToList();
+            return (from myproduct in myProductObjects.MyProducts
+                    where myproduct.ProductSubcategory != null && myproduct.ProductSubcategory.ProductCategory.Name.Equals(categoryName)
+                    select myproduct).Take(n).ToList();
+
         }
+
 
         public static List<MyProduct> GetMyProductsWithNRecentReviews(int howManyReviews)
         {
             MyProductObjects myProductObjects = new MyProductObjects();
-            return myProductObjects.MyProducts.Where(product => product.ProductReview.Count == howManyReviews).ToList();
+            return myProductObjects.MyProducts.Where(product => product.ProductReview.Count.Equals(howManyReviews)).ToList();
         }
     }
 }
