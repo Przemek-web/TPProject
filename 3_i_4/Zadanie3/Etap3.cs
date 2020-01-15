@@ -15,7 +15,7 @@ namespace Zadanie3
             using (DataClassesDataContext datacontext = new DataClassesDataContext())
             {
                 List<Product> query =
-                    (from product in datacontext.Product
+                    (from product in datacontext.Products
                      where product.Name.Contains(namePart)
                      select product).ToList();
 
@@ -29,7 +29,7 @@ namespace Zadanie3
         {
             using (DataClassesDataContext dataContext = new DataClassesDataContext())
             {
-                List<Product> query = (from product in dataContext.ProductVendor
+                List<Product> query = (from product in dataContext.ProductVendors
                                        where product.Vendor.Name.Equals(vendorName)
                                        select product.Product).ToList();
 
@@ -42,7 +42,7 @@ namespace Zadanie3
         {
             using (DataClassesDataContext dataContext = new DataClassesDataContext())
             {
-                List<string> query = (from product in dataContext.ProductVendor
+                List<string> query = (from product in dataContext.ProductVendors
                                       where product.Vendor.Name.Equals(vendorName)
                                       select product.Vendor.Name).ToList();
                 return query;
@@ -54,7 +54,7 @@ namespace Zadanie3
         {
             using (DataClassesDataContext dataContext = new DataClassesDataContext())
             {
-                string query = (from product in dataContext.ProductVendor
+                string query = (from product in dataContext.ProductVendors
                                 where product.Product.Name.Equals(productName)
                                 select product.Vendor.Name).First();
                 return query;
@@ -66,8 +66,8 @@ namespace Zadanie3
 
             using (DataClassesDataContext dataContext = new DataClassesDataContext())
             {
-                List<Product> query = (from reviews in dataContext.ProductReview
-                                       join tab in dataContext.Product on reviews.ProductID equals tab.ProductID
+                List<Product> query = (from reviews in dataContext.ProductReviews
+                                       join tab in dataContext.Products on reviews.ProductID equals tab.ProductID
                                        select tab).Take(howManyReviews).ToList<Product>();
 
                 return query;
@@ -78,8 +78,8 @@ namespace Zadanie3
 
             using (DataClassesDataContext dataContext = new DataClassesDataContext())
             {
-                List<Product> query = (from product in dataContext.Product
-                                       join tab in dataContext.ProductReview on product.ProductID equals tab.ProductID
+                List<Product> query = (from product in dataContext.Products
+                                       join tab in dataContext.ProductReviews on product.ProductID equals tab.ProductID
                                        orderby tab.ReviewDate
                                        select product).Take(howManyProducts).ToList<Product>();
 
@@ -92,8 +92,8 @@ namespace Zadanie3
         {
             using (DataClassesDataContext dataContext = new DataClassesDataContext())
             {
-                List<Product> query = (from product in dataContext.Product
-                                       join tab in dataContext.ProductCategory on product.ProductSubcategoryID equals tab.ProductCategoryID
+                List<Product> query = (from product in dataContext.Products
+                                       join tab in dataContext.ProductCategories on product.ProductSubcategoryID equals tab.ProductCategoryID
                                        where tab.Name == categoryName
                                        // SPRAWDZIC TO CO NIZEJ
                                        orderby tab.Name
@@ -106,7 +106,7 @@ namespace Zadanie3
         {
             using (DataClassesDataContext dataContext = new DataClassesDataContext())
             {
-                decimal query = (from product in dataContext.Product
+                decimal query = (from product in dataContext.Products
                                  where (product.ProductSubcategoryID == category.ProductCategoryID)
                                  select product.StandardCost).ToList().Sum();
 

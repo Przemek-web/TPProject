@@ -14,7 +14,7 @@ namespace Zadanie3
         {
             DataClassesDataContext dataContext = new DataClassesDataContext();
             this.myProducts = new List<MyProduct>();
-            foreach (Product product in dataContext.Product.ToList())
+            foreach (Product product in dataContext.Products.ToList())
             {
                 MyProduct myProduct = new MyProduct(product);
                 myProducts.Add(myProduct);

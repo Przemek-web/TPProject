@@ -49,7 +49,5 @@ namespace Zadanie3
             }
             return strony;
         }
-
-
     }
 }

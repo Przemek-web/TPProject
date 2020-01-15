@@ -27,7 +27,7 @@ namespace Zadanie3
         public static List<MyProduct> GetMyProductsWithNRecentReviews(int howManyReviews)
         {
             MyProductObjects myProductObjects = new MyProductObjects();
-            return myProductObjects.MyProducts.Where(product => product.ProductReview.Count.Equals(howManyReviews)).ToList();
+            return myProductObjects.MyProducts.Where(product => product.ProductReviews.Count.Equals(howManyReviews)).ToList();
            
 
             
