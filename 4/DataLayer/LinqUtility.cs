@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class Etap3
+    public class LinqUtility
     {
-
         public static List<Product> GetProductsByName(string namePart)
         {
             using (DataClassesDataContext datacontext = new DataClassesDataContext())
@@ -92,7 +91,6 @@ namespace DataLayer
                 List<Product> query = (from product in dataContext.Products
                                        join tab in dataContext.ProductCategories on product.ProductSubcategoryID equals tab.ProductCategoryID
                                        where tab.Name == categoryName
-                                       // SPRAWDZIC TO CO NIZEJ
                                        orderby tab.Name
                                        select product).Take(n).ToList();
                 return query;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public static class Etap4
+    public static class LinqExtensions
     {
         public static List<Product> produktyBezKategoriiFROM(this List<Product> lista)
         {
