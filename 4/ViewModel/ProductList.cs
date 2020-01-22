@@ -67,13 +67,7 @@ namespace ViewModel
 
         public void ShowAddWindow()
         {
-            ProductDetails productDetails = new ProductDetails();
-            ShowDetailsViewModel(productDetails);
-        }
-
-        public void ShowAddWindowTest()
-        {
-            ProductDetails productDetails = new ProductDetails(new ProductService());
+            ProductDetails productDetails = new ProductDetails(ProductService);
             ShowDetailsViewModel(productDetails);
         }
 
