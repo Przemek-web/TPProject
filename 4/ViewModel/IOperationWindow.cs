@@ -8,10 +8,12 @@ namespace ViewModel
 {
     public interface IOperationWindow
     {
-            void BindViewModel<T>(T viewModel);
-            void Show();
-            event MyHandler OnClose;
+        void BindViewModel<T>(T viewModel) where T : IViewModel;
+        void Show();
+        event VoidHandler OnClose;
     }
 
-    public delegate void MyHandler();
+    public delegate void VoidHandler();
 }
+
+    

@@ -13,30 +13,16 @@ using DataLayer;
 
 namespace ViewModel
 {
-    public class ProductList : INotifyPropertyChanged
+    public class ProductList : INotifyPropertyChanged, IViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Product Product { get; set; }
-
-        public List<Product> products;
-
-        public IProductService ProductService { get; set; }
-
-        public Action<string> MessageBoxShowDelegate { get; set; }
-
-        public string ActionText { get; set; }
-
-        public Command DisplayAddWindow { get; set; }
-        public Command RemoveEntity { get; set; }
-        public Command DisplayDetails { get; set; }
-
-        public IWindowResolver WindowResolver { get; set; }
-
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public List<Product> products;
 
         public List<Product> Products
         {
@@ -47,7 +33,18 @@ namespace ViewModel
                 NotifyPropertyChanged("Products");
             }
         }
+        public Product Product { get; set; }
 
+        public Action<string> MessageBoxShowDelegate { get; set; }
+
+        public string ActionText { get; set; }
+        public IWindowResolver WindowResolver { get; set; }
+
+        public Command DisplayAddWindow { get; set; }
+        public Command RemoveEntity { get; set; }
+        public Command DisplayDetails { get; set; }
+
+        public IProductService ProductService { get; set; }
         public Action CloseWindow { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public ProductList() : this(new ProductService()) { }
@@ -56,7 +53,7 @@ namespace ViewModel
         {
             ProductService = productService;
             Products = ProductService.GetAllProducts();
-            ActionText = "Message";
+            ActionText = "Message.";
             DisplayAddWindow = new Command(ShowAddWindow);
             RemoveEntity = new Command(RemoveProduct);
             DisplayDetails = new Command(ShowDetails);
@@ -71,7 +68,13 @@ namespace ViewModel
         public void ShowAddWindow()
         {
             ProductDetails productDetailsViewModel = new ProductDetails();
-            ShowDetails(productDetailsViewModel);
+            ShowDetailsViewModel(productDetailsViewModel);
+        }
+
+        public void ShowAddWindowTest()
+        {
+            ProductDetails productDetailsViewModel = new ProductDetails(new ProductService());
+            ShowDetailsViewModel(productDetailsViewModel);
         }
 
         private void RemoveProduct()
@@ -81,13 +84,13 @@ namespace ViewModel
 
         private void ShowDetails()
         {
-            ProductDetails productDetailsViewModel = new ProductDetails(Product, this.ProductService);
-            ShowDetails(productDetailsViewModel);
+            ProductDetails productDetailsViewModel = new ProductDetails(Product, ProductService);
+            ShowDetailsViewModel(productDetailsViewModel);
         }
 
-        private void ShowDetails(ProductDetails viewModel)
+        private void ShowDetailsViewModel(ProductDetails viewModel)
         {
-            viewModel.DisplayErrorMessage = this.MessageBoxShowDelegate;
+            viewModel.DisplayErrorMessage = MessageBoxShowDelegate;
             IOperationWindow window = WindowResolver.GetWindow();
             window.BindViewModel(viewModel);
             window.Show();

@@ -1,18 +1,21 @@
-﻿using System;
+﻿using Service;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer;
-using Service;
 
 namespace ViewModel
 {
-    public class ProductDetails 
+    public class ProductDetails : IViewModel
     {
+        //Messages
         public string MessageEmptyFields { get; set; }
 
-        private int _productID { get; set; }
+        //Static Data
+        private int _productID { get; set; } 
         public string ProductName { get; set; }
         public string ProductNumber { get; set; }
         public bool MakeFlag { get; set; }
@@ -30,11 +33,12 @@ namespace ViewModel
         public string ProductLine { get; set; }
         public string Class { get; set; }
         public string Style { get; set; }
-        public string ProductSubcategoryID { get; set; }
-        public string ModelId { get; set; }
+        public string ProductSubcategoryID { get; set; } 
+        public string ModelId { get; set; } 
         public DateTime? SellEndDate { get; set; }
         public DateTime SellStartDate { get; set; }
 
+        //Display Data
         public List<string> Colors { get; set; }
         public List<bool> Flags { get; set; }
         public List<string> Sizes { get; set; }
@@ -46,17 +50,23 @@ namespace ViewModel
         public List<string> ProductSubCategories { get; set; }
         public List<string> ModelIds { get; set; }
 
+        //Actions
         public Action CloseWindow { get; set; }
         public Action<string> DisplayErrorMessage { get; set; }
+        //CommandsData
         public string ActionText { get; set; }
 
+        //Commands
         public Command DisplayMessage { get; set; }
         public Command AddItemToDataBase { get; set; }
 
         public IProductService ProductService { get; set; }
 
-        public ProductDetails() : this(new ProductService()) { } 
-        
+        public ProductDetails(): this(new ProductService())
+        {
+
+        }
+
         public ProductDetails(IProductService productService)
         {
             ProductService = productService;
@@ -99,7 +109,7 @@ namespace ViewModel
             SellStartDate = product.SellStartDate;
             SellEndDate = product.SellEndDate;
         }
-
+        
 
         private void ShowPopupWindow()
         {
@@ -110,14 +120,14 @@ namespace ViewModel
         {
             MessageEmptyFields = "";
             Product product = GetProduct();
-            if (product.SellEndDate > product.SellStartDate || product.SellEndDate == null)
+            if (product.SellEndDate == null || product.SellEndDate > product.SellStartDate)
             {
                 ProductService.Insert(product);
                 CloseWindow();
             }
             else
             {
-                MessageEmptyFields = "Start date cannot be before the end date";
+                MessageEmptyFields = "Start date must be before end date";
                 ShowPopupWindow();
             }
         }
@@ -143,10 +153,10 @@ namespace ViewModel
             product.ProductLine = ProductLine;
             product.Class = Class;
             product.Style = Style;
-            product.ProductSubcategoryID = (ProductSubcategoryID != null && ProductSubcategoryID.Length > 0) ?
-                ProductService.GetSubcategoryIDByName(this.ProductSubcategoryID) : (int?)null;
+            product.ProductSubcategoryID = (ProductSubcategoryID != null && ProductSubcategoryID.Length > 0) ? 
+                ProductService.GetSubcategoryIDByName(ProductSubcategoryID) : (int?)null;
             product.ProductModelID = (ModelId != null && ModelId.Length > 0) ?
-                ProductService.GetModelIDByName(ModelId) : (int?)null;
+                ProductService.GetModelIDByName(ModelId) : (int?)null; 
             product.SellStartDate = SellStartDate;
             product.SellEndDate = SellEndDate;
             product.ModifiedDate = DateTime.Today;

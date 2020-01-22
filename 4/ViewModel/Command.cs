@@ -12,9 +12,9 @@ namespace ViewModel
         private readonly Action action;
         public event EventHandler CanExecuteChanged;
 
-        public Command(Action action)
+        public Command(Action command)
         {
-            this.action = action;
+            action = command;
         }
 
         public bool CanExecute(object parameter)
@@ -24,7 +24,7 @@ namespace ViewModel
 
         public void Execute(object parameter)
         {
-            this.action();
+            action();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Service
         {
             Task.Run(() =>
             {
-                LinqUtility.AddProduct(product);
+                Methods.AddProduct(product);
                 CollectionChanged?.Invoke();
             });
         }
@@ -23,91 +23,91 @@ namespace Service
         {
             Task.Run(() =>
             {
-                Product product = LinqUtility.GetProduct(productId);
+                Product product = Methods.GetProduct(productId);
                 product.DiscontinuedDate = DateTime.Today;
-                LinqUtility.UpdateProduct(product);
+                Methods.UpdateProduct(product);
                 CollectionChanged?.Invoke();
             });
         }
 
         public List<Product> GetAllProducts()
         {
-            return LinqUtility.GetAllProducts().Where(product => !product.DiscontinuedDate.HasValue).ToList();
+            return Methods.GetAllProducts().Where(product => !product.DiscontinuedDate.HasValue).ToList();
         }
 
         public int GetModelIDByName(string name)
         {
-            return LinqUtility.SelectModelId(name);
+            return Methods.SelectModelId(name);
         }
 
         public string GetModelNameByID(int id)
         {
-            return LinqUtility.SelectModelName(id);
+            return Methods.SelectModelName(id);
         }
 
         public List<string> GetProductClasses()
         {
-            return LinqUtility.SelectDistinctClasses();
+            return Methods.SelectDistinctClasses();
         }
 
         public List<string> GetProductColors()
         {
-            return LinqUtility.SelectDistinctColors();
+            return Methods.SelectDistinctColors();
         }
 
         public List<string> GetProductLines()
         {
-            return LinqUtility.SelectDistinctProductLines();
+            return Methods.SelectDistinctProductLines();
         }
 
         public List<string> GetProductModels()
         {
-            return LinqUtility.SelectDistinctModels();
+            return Methods.SelectDistinctModels();
         }
 
         public List<string> GetProductSizes()
         {
-            return LinqUtility.SelectDistinctSizes();
+            return Methods.SelectDistinctSizes();
         }
 
         public List<string> GetProductStyles()
         {
-            return LinqUtility.SelectDistinctStyles();
+            return Methods.SelectDistinctStyles();
         }
 
         public List<string> GetProductSubcategories()
         {
-            return LinqUtility.SelectDistinctSubcategories();
+            return Methods.SelectDistinctSubcategories();
         }
 
         public List<string> GetSizeUnits()
         {
-            return LinqUtility.SelectDistinctSizesUnits();
+            return Methods.SelectDistinctSizesUnits();
         }
 
         public int GetSubcategoryIDByName(string name)
         {
-            return LinqUtility.SelectSubcategoryId(name);
+            return Methods.SelectSubcategoryId(name);
         }
 
         public string GetSubcategoryNameByID(int id)
         {
-            return LinqUtility.SelectSubcategoryName(id);
+            return Methods.SelectSubcategoryName(id);
         }
 
         public List<string> GetWeightUnits()
         {
-            return LinqUtility.SelectDistinctWeightUnits();
+            return Methods.SelectDistinctWeightUnits();
         }
 
         public void Insert(Product product)
         {
             Task.Run(() =>
             {
-                if (LinqUtility.GetProduct(product.ProductID) != null)
-                    LinqUtility.UpdateProduct(product);
+                if (Methods.GetProduct(product.ProductID) != null)
+                    Methods.UpdateProduct(product);
                 else
-                    LinqUtility.AddProduct(product);
+                    Methods.AddProduct(product);
 
                 CollectionChanged?.Invoke();
             });
@@ -117,7 +117,7 @@ namespace Service
         {
             Task.Run(() =>
             {
-                LinqUtility.UpdateProduct(product);
+                Methods.UpdateProduct(product);
                 CollectionChanged?.Invoke();
             });
         }

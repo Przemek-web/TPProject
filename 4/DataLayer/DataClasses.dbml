@@ -95,6 +95,15 @@
       <Association Name="ProductCategory_ProductSubcategory" Member="ProductSubcategories" ThisKey="ProductCategoryID" OtherKey="ProductCategoryID" Type="ProductSubcategory" />
     </Type>
   </Table>
+  <Table Name="Production.ProductDescription" Member="ProductDescriptions">
+    <Type Name="ProductDescription">
+      <Column Name="ProductDescriptionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="rowguid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="ProductDescription_ProductModelProductDescriptionCulture" Member="ProductModelProductDescriptionCultures" ThisKey="ProductDescriptionID" OtherKey="ProductDescriptionID" Type="ProductModelProductDescriptionCulture" />
+    </Type>
+  </Table>
   <Table Name="Production.ProductCostHistory" Member="ProductCostHistories">
     <Type Name="ProductCostHistory">
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -103,15 +112,6 @@
       <Column Name="StandardCost" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Product_ProductCostHistory" Member="Product" ThisKey="ProductID" OtherKey="ProductID" Type="Product" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="Production.ProductDescription" Member="ProductDescriptions">
-    <Type Name="ProductDescription">
-      <Column Name="ProductDescriptionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
-      <Column Name="rowguid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="ProductDescription_ProductModelProductDescriptionCulture" Member="ProductModelProductDescriptionCultures" ThisKey="ProductDescriptionID" OtherKey="ProductDescriptionID" Type="ProductModelProductDescriptionCulture" />
     </Type>
   </Table>
   <Table Name="Production.ProductInventory" Member="ProductInventories">
@@ -127,16 +127,6 @@
       <Association Name="Product_ProductInventory" Member="Product" ThisKey="ProductID" OtherKey="ProductID" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="Production.ProductListPriceHistory" Member="ProductListPriceHistories">
-    <Type Name="ProductListPriceHistory">
-      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ListPrice" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Product_ProductListPriceHistory" Member="Product" ThisKey="ProductID" OtherKey="ProductID" Type="Product" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="Production.ProductModel" Member="ProductModels">
     <Type Name="ProductModel">
       <Column Name="ProductModelID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -148,6 +138,16 @@
       <Association Name="ProductModel_Product" Member="Products" ThisKey="ProductModelID" OtherKey="ProductModelID" Type="Product" />
       <Association Name="ProductModel_ProductModelIllustration" Member="ProductModelIllustrations" ThisKey="ProductModelID" OtherKey="ProductModelID" Type="ProductModelIllustration" />
       <Association Name="ProductModel_ProductModelProductDescriptionCulture" Member="ProductModelProductDescriptionCultures" ThisKey="ProductModelID" OtherKey="ProductModelID" Type="ProductModelProductDescriptionCulture" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductListPriceHistory" Member="ProductListPriceHistories">
+    <Type Name="ProductListPriceHistory">
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ListPrice" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Product_ProductListPriceHistory" Member="Product" ThisKey="ProductID" OtherKey="ProductID" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="Production.ProductModelIllustration" Member="ProductModelIllustrations">

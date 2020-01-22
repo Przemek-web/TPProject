@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class LinqUtility
+    public class Methods
     {
         public static List<Product> GetProductsByName(string namePart)
         {
@@ -236,8 +236,6 @@ namespace DataLayer
         }
 
 
-
-
         public static List<string> SelectDistinctClasses()
         {
             List<string> results = new List<string>();
@@ -294,8 +292,6 @@ namespace DataLayer
             }
         }
 
-
-
         public static int SelectSubcategoryId(string subcategoryName)
         {
             if (subcategoryName == null)
@@ -310,7 +306,6 @@ namespace DataLayer
             }
         }
 
-
         public static int SelectModelId(string modelName)
         {
             if (modelName == null)
@@ -324,9 +319,6 @@ namespace DataLayer
                 return query;
             }
         }
-
-
-
 
         public static string SelectSubcategoryName(int? subcategoryName)
         {
@@ -368,9 +360,6 @@ namespace DataLayer
             }
         }
 
-
-
-
         public static List<string> SelectDistinctModels()
         {
             using (DataClassesDataContext dataContext = new DataClassesDataContext())
@@ -383,6 +372,4 @@ namespace DataLayer
         }
     }
 }
-
-
 

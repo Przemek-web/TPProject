@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer
+namespace ViewModel
 {
-    public class Program
+    public interface IViewModel
     {
-        static void Main(string[] args)
-        {
-        }
+        Action CloseWindow { get; set; }
     }
 }
