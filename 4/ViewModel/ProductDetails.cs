@@ -11,11 +11,8 @@ namespace ViewModel
 {
     public class ProductDetails : IViewModel
     {
-        //Messages
         public string MessageEmptyFields { get; set; }
-
-        //Static Data
-        private int _productID { get; set; } 
+        private int _productID { get; set; }
         public string ProductName { get; set; }
         public string ProductNumber { get; set; }
         public bool MakeFlag { get; set; }
@@ -33,8 +30,8 @@ namespace ViewModel
         public string ProductLine { get; set; }
         public string Class { get; set; }
         public string Style { get; set; }
-        public string ProductSubcategoryID { get; set; } 
-        public string ModelId { get; set; } 
+        public string ProductSubcategoryID { get; set; }
+        public string ModelId { get; set; }
         public DateTime? SellEndDate { get; set; }
         public DateTime SellStartDate { get; set; }
 
@@ -50,22 +47,18 @@ namespace ViewModel
         public List<string> ProductSubCategories { get; set; }
         public List<string> ModelIds { get; set; }
 
-        //Actions
         public Action CloseWindow { get; set; }
         public Action<string> DisplayErrorMessage { get; set; }
-        //CommandsData
+
         public string ActionText { get; set; }
 
-        //Commands
+
         public Command DisplayMessage { get; set; }
         public Command AddItemToDataBase { get; set; }
 
         public IProductService ProductService { get; set; }
 
-        public ProductDetails(): this(new ProductService())
-        {
-
-        }
+        public ProductDetails() : this(new ProductService()) { }
 
         public ProductDetails(IProductService productService)
         {
@@ -109,7 +102,7 @@ namespace ViewModel
             SellStartDate = product.SellStartDate;
             SellEndDate = product.SellEndDate;
         }
-        
+
 
         private void ShowPopupWindow()
         {
@@ -153,10 +146,10 @@ namespace ViewModel
             product.ProductLine = ProductLine;
             product.Class = Class;
             product.Style = Style;
-            product.ProductSubcategoryID = (ProductSubcategoryID != null && ProductSubcategoryID.Length > 0) ? 
+            product.ProductSubcategoryID = (ProductSubcategoryID != null && ProductSubcategoryID.Length > 0) ?
                 ProductService.GetSubcategoryIDByName(ProductSubcategoryID) : (int?)null;
             product.ProductModelID = (ModelId != null && ModelId.Length > 0) ?
-                ProductService.GetModelIDByName(ModelId) : (int?)null; 
+                ProductService.GetModelIDByName(ModelId) : (int?)null;
             product.SellStartDate = SellStartDate;
             product.SellEndDate = SellEndDate;
             product.ModifiedDate = DateTime.Today;
