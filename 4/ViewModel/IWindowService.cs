@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    public interface IWindowResolver
+    public interface IWindowService
     {
         IOperationWindow GetWindow();
     }

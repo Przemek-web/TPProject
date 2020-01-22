@@ -7,7 +7,7 @@ using ViewModel;
 
 namespace View
 {
-    public class ProductDetailsResolver : IWindowResolver
+    public class ProductDetailsService : IWindowService
     {
         public IOperationWindow GetWindow()
         {

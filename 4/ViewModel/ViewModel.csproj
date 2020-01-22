@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="IOperationWindow.cs" />
     <Compile Include="IViewModel.cs" />
-    <Compile Include="IWindowResolver.cs" />
+    <Compile Include="IWindowService.cs" />
     <Compile Include="ProductDetails.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="ProductList.cs" />

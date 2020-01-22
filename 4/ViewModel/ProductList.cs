@@ -38,7 +38,7 @@ namespace ViewModel
         public Action<string> MessageBoxShowDelegate { get; set; }
 
         public string ActionText { get; set; }
-        public IWindowResolver WindowResolver { get; set; }
+        public IWindowService WindowResolver { get; set; }
 
         public Command DisplayAddWindow { get; set; }
         public Command RemoveEntity { get; set; }
@@ -67,14 +67,14 @@ namespace ViewModel
 
         public void ShowAddWindow()
         {
-            ProductDetails productDetailsViewModel = new ProductDetails();
-            ShowDetailsViewModel(productDetailsViewModel);
+            ProductDetails productDetails = new ProductDetails();
+            ShowDetailsViewModel(productDetails);
         }
 
         public void ShowAddWindowTest()
         {
-            ProductDetails productDetailsViewModel = new ProductDetails(new ProductService());
-            ShowDetailsViewModel(productDetailsViewModel);
+            ProductDetails productDetails = new ProductDetails(new ProductService());
+            ShowDetailsViewModel(productDetails);
         }
 
         private void RemoveProduct()
@@ -84,8 +84,8 @@ namespace ViewModel
 
         private void ShowDetails()
         {
-            ProductDetails productDetailsViewModel = new ProductDetails(Product, ProductService);
-            ShowDetailsViewModel(productDetailsViewModel);
+            ProductDetails productDetails = new ProductDetails(Product, ProductService);
+            ShowDetailsViewModel(productDetails);
         }
 
         private void ShowDetailsViewModel(ProductDetails viewModel)

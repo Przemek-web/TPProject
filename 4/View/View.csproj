@@ -64,7 +64,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="EmptyConverter.cs" />
-    <Compile Include="ProductDetailsResolver.cs" />
+    <Compile Include="ProductDetailsService.cs" />
     <Compile Include="ProductDetailsWindow.cs" />
     <Compile Include="ProductDetails.xaml.cs">
       <DependentUpon>ProductDetails.xaml</DependentUpon>

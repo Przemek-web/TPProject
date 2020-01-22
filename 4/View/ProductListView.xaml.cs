@@ -31,7 +31,7 @@ namespace View
             base.OnInitialized(e);
             ProductList mc = (ProductList)DataContext;
             mc.MessageBoxShowDelegate = text => MessageBox.Show(text, "Button interaction", MessageBoxButton.OK, MessageBoxImage.Information);
-            mc.WindowResolver = new ProductDetailsResolver();
+            mc.WindowResolver = new ProductDetailsService();
         }
     }
 }
