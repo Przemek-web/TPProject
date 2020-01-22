@@ -34,8 +34,6 @@ namespace ViewModel
         public string ModelId { get; set; }
         public DateTime? SellEndDate { get; set; }
         public DateTime SellStartDate { get; set; }
-
-        //Display Data
         public List<string> Colors { get; set; }
         public List<bool> Flags { get; set; }
         public List<string> Sizes { get; set; }
@@ -46,20 +44,13 @@ namespace ViewModel
         public List<string> Styles { get; set; }
         public List<string> ProductSubCategories { get; set; }
         public List<string> ModelIds { get; set; }
-
         public Action CloseWindow { get; set; }
         public Action<string> DisplayErrorMessage { get; set; }
-
         public string ActionText { get; set; }
-
-
         public Command DisplayMessage { get; set; }
         public Command AddItemToDataBase { get; set; }
-
         public IProductService ProductService { get; set; }
-
         public ProductDetails() : this(new ProductService()) { }
-
         public ProductDetails(IProductService productService)
         {
             ProductService = productService;
@@ -76,7 +67,6 @@ namespace ViewModel
             ProductSubCategories = ProductService.GetProductSubcategories();
             ModelIds = ProductService.GetProductModels();
         }
-
         public ProductDetails(Product product, IProductService productService) : this(productService)
         {
             ProductName = product.Name;
@@ -102,13 +92,10 @@ namespace ViewModel
             SellStartDate = product.SellStartDate;
             SellEndDate = product.SellEndDate;
         }
-
-
         private void ShowPopupWindow()
         {
             DisplayErrorMessage(MessageEmptyFields);
         }
-
         private void SaveProduct()
         {
             MessageEmptyFields = "";
@@ -124,7 +111,6 @@ namespace ViewModel
                 ShowPopupWindow();
             }
         }
-
         private Product GetProduct()
         {
             Product product = new Product();
