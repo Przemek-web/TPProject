@@ -26,12 +26,12 @@ namespace View
             InitializeComponent();
         }
 
-        protected override void OnInitialized(EventArgs e)
+        protected override void OnInitialized(EventArgs eventArgs)
         {
-            base.OnInitialized(e);
-            ProductList mc = (ProductList)DataContext;
-            mc.MessageBoxShowDelegate = text => MessageBox.Show(text, "Button interaction", MessageBoxButton.OK, MessageBoxImage.Information);
-            mc.WindowResolver = new ProductDetailsService();
+            base.OnInitialized(eventArgs);
+            ProductList productList = (ProductList)DataContext;
+            productList.MessageBoxShowDelegate = text => MessageBox.Show(text, "Button interaction", MessageBoxButton.OK, MessageBoxImage.Information);
+            productList.WindowResolver = new ProductDetailsService();
         }
     }
 }
